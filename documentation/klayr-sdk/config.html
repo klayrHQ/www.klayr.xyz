@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Client configuration :: Klayr documentation</title>
+    <link rel="canonical" href="https://klayr.xyz/documentation/klayr-sdk/config.html">
+    <link rel="prev" href="client-cli.html">
+    <link rel="next" href="modules/index.html">
+    <meta name="description" content="The configuration reference covers the config object, the default values, and also a description of each value.">
+    <meta name="generator" content="Antora 3.1.1">
+
+<link id="theme" rel="stylesheet" title="Default" href="../_/css/site.css">
+<link rel="stylesheet" title="Dark" href="../_/css/dark-site.css">
+
+<script>var uiRootPath = '../_'</script>
+<script src="../_/js/vendor/medium-zoom.js"></script>
+<script type="text/javascript" id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="e4db29b5-cd94-4bcf-87e4-04f4ca564240" data-blockingmode="manual"></script>
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://klayr.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/klayr.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+<!-- Matomo Tag Manager -->
+<script>
+  var _mtm = window._mtm = window._mtm || [];
+  _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+  g.async=true; g.src='https://cdn.matomo.cloud/klayr.matomo.cloud/container_RUW6y8yf.js'; s.parentNode.insertBefore(g,s);
+</script>
+<!-- End Matomo Tag Manager -->
+<link rel="icon" href="../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="top-logo">
+        <a href=".." class="klayr-logo"></a>
+        <a href=".." class="docs-logo"></a>
+      </div>
+      <!--<a class="navbar-item" href="https://klayr.xyz/documentation">Klayr documentation</a>-->
+        <div id="docsearch" class="navbar-menu search-box hide-for-print">
+          <!--<input id="search-input-toolbar" type="text" placeholder="Search me ...">-->
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">APIs</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../api/klayr-node-rpc.html">Klayr node RPC API</a>
+            <a class="navbar-item" href="../api/klayr-service-http.html">Klayr Service HTTP
+              API</a>
+            <a class="navbar-item" href="../api/klayr-service-rpc.html">Klayr Service RPC
+              API</a>
+            <a class="navbar-item" href="../api/klayr-service-pubsub.html">Klayr Service
+              Pub/Sub API</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Explorers</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://explorer.klayr.xyz" target="_blank">Klayr Explorer</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../klayr-sdk/">Klayr SDK</a>
+            <a class="navbar-item" href="../klayr-service/">Klayr Service</a>
+            <a class="navbar-item" href="../klayr-core/">Klayr Core</a>
+            <a class="navbar-item" href="https://klayr.xyz/wallet" target="_blank">Klayr Wallets</a>
+          </div>
+        </div>
+        <button onclick="switch_style('toggle')" id="theme-toggle" class="theme-toggle navbar-item"></button>
+        <!-- <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div> -->
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+  <div class="components-versions">
+      <div class="page-components">
+    <button class="component-menu-toggle" title="Show other documentations">Klayr SDK</button>
+    <div class="component-menu">
+        <a class="component" href="../klayr-core/index.html">Klayr Core</a>
+        <a class="component" href="../index.html">Klayr Documentation</a>
+        <a class="component is-current" href="index.html">Klayr SDK</a>
+        <a class="component" href="../klayr-service/index.html">Klayr Service</a>
+    </div>
+  </div>
+    <span></span>
+      </div>
+  <span></span>
+  <span></span>
+    <a href="../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Klayr SDK</a></li>
+    <li><a href="config.html">Client configuration</a></li>
+  </ul>
+</nav>
+    <div id="docsearch-toolbar" class="search-box hide-for-print toolbar-search">
+      <!--<input id="search-input" type="text" placeholder="Search me ...">-->
+    </div>
+  <div class="edit-this-page"><a href="https://github.com/KlayrHQ/klayr-docs/edit/docs-sdk/modules/ROOT/pages/config.adoc">Edit this Page</a></div>
+</div>
+
+<div class="body">
+<div class="nav-container" data-component="klayr-sdk" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Klayr SDK</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Klayr SDK</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="client-cli.html">Client CLI</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="config.html">Client configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="modules/index.html">Modules</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.BaseModule.html" target="_blank" rel="noopener">Base module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.Auth.AuthModule.html" target="_blank" rel="noopener">Klayr Auth module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.Fee.FeeModule.html" target="_blank" rel="noopener">Klayr Fee module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.Interoperability.MainchainInteroperabilityModule.html" target="_blank" rel="noopener">Klayr Mainchain Interoperability module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.Interoperability.SidechainInteroperabilityModule.html" target="_blank" rel="noopener">Klayr Sidechain Interoperability module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.NFT.NFTModule.html" target="_blank" rel="noopener">Klayr NFT module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.PoA.PoAModule.html" target="_blank" rel="noopener">Klayr PoA module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.PoS.PoSModule.html" target="_blank" rel="noopener">Klayr PoS module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.Random.RandomModule.html" target="_blank" rel="noopener">Klayr Random module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.Reward.RewardModule.html" target="_blank" rel="noopener">Klayr Reward module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.Token.TokenModule.html" target="_blank" rel="noopener">Klayr Token module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.Validators.ValidatorsModule.html" target="_blank" rel="noopener">Klayr Validators module</a></span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="plugins/index.html">Plugins</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_chain_connector_plugin.html" target="_blank" rel="noopener">Klayr Chain Connector plugin</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_monitor_plugin.html" target="_blank" rel="noopener">Klayr Monitor plugin</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_dashboard_plugin.html" target="_blank" rel="noopener">Klayr Dashboard plugin</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_faucet_plugin.html" target="_blank" rel="noopener">Klayr Faucet plugin</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_generator_plugin.html" target="_blank" rel="noopener">Klayr Generator plugin</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_report_misbehavior_plugin.html" target="_blank" rel="noopener">Klayr Report Misbehavior plugin</a></span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">References</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="references/migration.html">SDK Migration Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="references/klayr-elements/index.html">Klayr Elements</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_api_client.html" target="_blank" rel="noopener">Klayr API client reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_chain.html" target="_blank" rel="noopener">Klayr Chain reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_codec.html" target="_blank" rel="noopener">Klayr Codec reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_cryptography.html" target="_blank" rel="noopener">Klayr Cryptography reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_p2p.html" target="_blank" rel="noopener">Klayr P2P reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_passphrase.html" target="_blank" rel="noopener">Klayr Passphrase reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_transaction_pool.html" target="_blank" rel="noopener">Klayr Transaction Pool reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_transactions.html" target="_blank" rel="noopener">Klayr Transactions reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_tree.html" target="_blank" rel="noopener">Klayr Tree reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_utils.html" target="_blank" rel="noopener">Klayr Utils reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_validator.html" target="_blank" rel="noopener">Klayr Validator reference</a></span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="references/klayr-commander/index.html">Klayr Commander</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/klayr-commander.html" target="_blank" rel="noopener">Klayr Commander reference</a></span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/klayr_framework.html" target="_blank" rel="noopener">Klayr Framework reference</a></span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Klayr SDK</span>
+    <span class="version">6.0 (latest)</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../klayr-core/index.html">Klayr Core</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../klayr-core/index.html">4.0 (latest)</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../index.html">Klayr Documentation</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../index.html">default</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="index.html">Klayr SDK</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">6.0 (latest)</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../klayr-service/index.html">Klayr Service</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../klayr-service/index.html">0.7 (latest)</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="3">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+      <h1 class="page">Client configuration</h1>
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>A complete reference of the client configurations is described on this page.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For more information on how to create and use a <strong>custom configuration</strong> for the client, please check out the guide <a href="../build-blockchain/configuration.html" class="xref page">Blockchain client configuration</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#default-configuration">Default Configuration</a></li>
+<li><a href="#client-config-reference">Client config reference</a>
+<ul class="sectlevel2">
+<li><a href="#genesis">genesis</a></li>
+<li><a href="#network">network</a></li>
+<li><a href="#rpc">rpc</a></li>
+<li><a href="#system">system</a></li>
+<li><a href="#modules">modules</a></li>
+<li><a href="#plugins">plugins</a></li>
+<li><a href="#optional-configurations">Optional configurations</a>
+<ul class="sectlevel3">
+<li><a href="#generator">generator</a></li>
+<li><a href="#legacy">legacy</a></li>
+<li><a href="#transactionpool">transactionPool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="default-configuration"><a class="anchor" href="#default-configuration"></a>Default Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The default configuration used to initialize new blockchain clients with Klayr Commander can be found here: <a href="https://github.com/KlayrHQ/klayr-sdk/blob/development/commander/src/utils/config.ts" target="_blank" rel="noopener">config.ts</a></p>
+</div>
+<div class="paragraph">
+<p>The configuration schema can be found at <a href="https://github.com/KlayrHQ/klayr-sdk/blob/development/framework/src/schema/application_config_schema.ts" target="_blank" rel="noopener">client config schema</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="client-config-reference"><a class="anchor" href="#client-config-reference"></a>Client config reference</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following sections describe all configuration categories and their available options.</p>
+</div>
+<div class="sect2">
+<h3 id="genesis"><a class="anchor" href="#genesis"></a>genesis</h3>
+<div class="paragraph">
+<p>The <code>genesis</code> configuration holds the settings for the blockchain protocol.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The <code>genesis</code> configurations should only be changed by the blockchain developer, and not by the node operator!
+If a node operator changes any of the genesis configurations, it might cause the node to fork.
+</td>
+</tr>
+</table>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_properties"></a>Properties</p>
+</li>
+<li>
+<p><a id="tabset1_sample"></a>Sample</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_properties">
+<table class="tableblock frame-all grid-all stripes-hover stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property&#8217;s Name</th>
+<th class="tableblock halign-left valign-top">Datatype</th>
+<th class="tableblock halign-left valign-top">Optionality</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">block</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is the first block of a chain.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">"block": {
+	"fromFile": "./config/genesis_block.blob'",
+	"blob": "&lt;&lt;Hex of encoded genesis block&gt;&gt;",
+},</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">chainID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mandatory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Represents a 4-byte hex string that identifies each chain in the Klayr ecosystem. The length of the hex string should be 8 characters.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">00000000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">maxTransactionsSize</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mandatory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum transaction size (kilobytes) allowed in a block.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15 * 1024</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">blockTime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mandatory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The frequency of blocks to be created.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bftBatchSize</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mandatory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The length of a round for block generation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">53</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_sample">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const customConfig =
+{
+	// Other types of configurations.
+	"genesis": {
+		"block": {
+			"fromFile": "./config/genesis_block.blob",
+			"blob": "&lt;&lt;Hex of encoded genesis block&gt;&gt;",
+		},
+		"chainID": "00000000",
+		"maxTransactionsSize": 15 * 1024, // Kilo Bytes
+		"blockTime": 10,
+		"bftBatchSize": 103,
+	},
+	// Other types of configurations.
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="network"><a class="anchor" href="#network"></a>network</h3>
+<div class="paragraph">
+<p>The <code>network</code> category contains the following configuration options:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset2_properties"></a>Properties</p>
+</li>
+<li>
+<p><a id="tabset2_sample"></a>Sample</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_properties">
+<table class="tableblock frame-all grid-all stripes-hover stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property&#8217;s Name</th>
+<th class="tableblock halign-left valign-top">Datatype</th>
+<th class="tableblock halign-left valign-top">Optionality</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The version of network protocol.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">port</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The port defines an open port for P2P incoming connections.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7667</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">seedPeers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mandatory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SeedPeers defines an entry point of the network.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">"seedPeers": [{
+	"ip": "127.0.0.1",
+	"port": 5000
+}]</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">host</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Address of the server to connect to.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">127.0.0.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">blacklistedIPs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of IP addresses for which the node will reject the connection for both outbound and inbound connections.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.178.23</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fixedPeers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A set of peers to which a node will always try to connect, for outbound connections.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">"fixedPeers": [{
+	"ip": "192.110.01.12",
+	"port": 5000
+}]</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">whitelistedPeers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set of peers that are always allowed to connect to the node through inbound connections.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">"whitelistedPeers": [{
+	"ip": "192.110.01.12",
+	"port": 5000
+}]</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">maxOutboundConnections</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of outbound connections allowed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20<sup class="footnote" id="_footnote_disclaimer">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">maxInboundConnections</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of inbound connections allowed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100<sup class="footnoteref">[<a class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wsMaxPayload</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum size of the payload allowed per communication.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3048576<sup class="footnoteref">[<a class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">advertiseAddress</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines whether to announce the IP/Port to other peers.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true<sup class="footnoteref">[<a class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_sample">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const customConfig =
+{
+	// Other types of configurations.
+	"network": {
+		"version": "1.0",
+		"seedPeers": [
+			{
+				"ip": "127.0.0.1",
+				"port": 5000
+			}
+		],
+		"port": 7667,
+		"host": "127.0.0.1",
+		"blacklistedIPs": [
+			"172.112,31.0",
+			"172.112,31.2"
+		],
+		"fixedPeers": [
+			{
+				"ip": "192.110.01.12",
+				"port": 5000
+			},
+		],
+		"whitelistedPeers": [
+			{
+				"ip": "192.110.01.12",
+				"port": 5000
+			},
+		],
+		"maxOutboundConnections": 20,
+		"maxInboundConnections": 100,
+		"wsMaxPayload": 3048576,
+		"advertiseAddress": true,
+		},
+	// Other types of configurations.
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The connectivity of the node might be negatively impacted if the <code><strong>fixedPeers</strong></code> configuration is used.
+Beware of declaring only trustworthy peers in <code><strong>whitelistedPeers</strong></code> as these could attack a node with a denial-of-service attack because the banning mechanism is deactivated.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="rpc"><a class="anchor" href="#rpc"></a>rpc</h3>
+<div class="paragraph">
+<p>Apps on Klayr can communicate with a node via the <code>rpc</code> communication protocol.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset3_properties"></a>Properties</p>
+</li>
+<li>
+<p><a id="tabset3_sample"></a>Sample</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset3_properties">
+<table class="tableblock frame-all grid-all stripes-hover stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property&#8217;s Name</th>
+<th class="tableblock halign-left valign-top">Datatype</th>
+<th class="tableblock halign-left valign-top">Optionality</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">modes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">array</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mandatory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modes of communication between klayr node and external services.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IPC, WS, HTTP</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">port</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mandatory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port to be used for a 'WS' connection.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7887</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">host</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mandatory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Address of the server to connect.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">127.0.0.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">allowedMethods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">array</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allowed methods for the node to use.
+Add the <code>namespace</code>, to allow all endpoints of namespace, or <code>namespace_endpointName</code> to allow a specific endpoint.
+<code>[*]</code> allows all methods, <code>[]</code> none.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">["generator", "system", "random"]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">accessControlAllowOrigin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin">Access Control Allow Origin</a> for RPC requests.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"*"</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tab-pane" aria-labelledby="tabset3_sample">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const customConfig =
+{
+	// Other types of configurations.
+	"rpc": {
+		"modes": ["IPC"],
+		"port": 7887,
+		"host": "127.0.0.1",
+	},
+	// Other types of configurations.
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="system"><a class="anchor" href="#system"></a>system</h3>
+<div class="paragraph">
+<p>The <code>system</code> configuration holds settings for the node.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset4_properties"></a>Properties</p>
+</li>
+<li>
+<p><a id="tabset4_sample"></a>Sample</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_properties">
+<table class="tableblock frame-all grid-all stripes-hover stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property&#8217;s Name</th>
+<th class="tableblock halign-left valign-top">Datatype</th>
+<th class="tableblock halign-left valign-top">Optionality</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mandatory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The version of the system.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dataPath</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mandatory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DataPath defines the folder path for the client application data.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~/.klayr/beta-sdk-app</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keepEventsForHeights</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mandatory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the number of blocks for which the events should be maintained by the system.
+Usually, the events are based on the latest, given number of blocks.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">300<sup class="footnoteref">[<a class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">logLevel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mandatory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Level of the log to be maintained.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">info</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">enableMetrics</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tracks certain events in the system.
+If enabled, metrics can be queried via the <code>system_getMetricReport</code> endpoint.
+For development purposes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tab-pane" aria-labelledby="tabset4_sample">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const customConfig =
+{
+	// Other types of configurations.
+	"system": {
+		"version": "1.0",
+		"dataPath": "~/.klayr/beta-sdk-app",
+		"keepEventsForHeights": 300,
+		"logLevel": "info",
+	},
+	// Other types of configurations.
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="modules"><a class="anchor" href="#modules"></a>modules</h3>
+<div class="paragraph">
+<p><code>modules</code> contains the module-specific configuration options for the blockchain client.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The <code>module</code> configurations should only be changed by the blockchain developer, and not by the node operator!
+If a node operator changes any of the module-specific configurations, it might cause the node to fork.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Please check the available documentation for the respective module to learn about the available configuration options.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="plugins"><a class="anchor" href="#plugins"></a>plugins</h3>
+<div class="paragraph">
+<p><code>plugins</code> contains the plugin-specific configuration options for the blockchain client.</p>
+</div>
+<div class="paragraph">
+<p>Please check the available documentation for the respective plugin to learn about the available configuration options.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="optional-configurations"><a class="anchor" href="#optional-configurations"></a>Optional configurations</h3>
+<div class="sect3">
+<h4 id="generator"><a class="anchor" href="#generator"></a>generator</h4>
+<div class="paragraph">
+<p>The <code>generator</code> configuration is used to read <a href="../run-blockchain/become-a-validator.html#creating-the-validator-keys" class="xref page">validator keys</a> from a file, which are then stored in the database.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset5_properties"></a>Properties</p>
+</li>
+<li>
+<p><a id="tabset5_sample"></a>Sample</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_properties">
+<table class="tableblock frame-all grid-all stripes-hover stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property&#8217;s Name</th>
+<th class="tableblock halign-left valign-top">Datatype</th>
+<th class="tableblock halign-left valign-top">Optionality</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keys</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contains a path to the "keys" file of a generator/validator.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{"fromFile": "keys.json"}</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tab-pane" aria-labelledby="tabset5_sample">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const customConfig =
+{
+	// Other types of configurations.
+	"generator": {
+		"keys": {
+			"fromFile": "keys.json",
+		},
+	},
+	// Other types of configurations.
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="legacy"><a class="anchor" href="#legacy"></a>legacy</h4>
+<div class="paragraph">
+<p>The <code>legacy</code> category contains the following configuration options:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset6_properties"></a>Properties</p>
+</li>
+<li>
+<p><a id="tabset6_sample"></a>Sample</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_properties">
+<table class="tableblock frame-all grid-all stripes-hover stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property&#8217;s Name</th>
+<th class="tableblock halign-left valign-top">Datatype</th>
+<th class="tableblock halign-left valign-top">Optionality</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sync</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean if it will sync the legacy blocks or not.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">brackets</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">array</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mandatory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Brackets specify the blocks of previous legacy blockchains.
+For example, in Klayr Core v4, it will store the height from Core v3 where it starts from, and where it ended.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+    {
+       "startHeight":1,
+       "snapshotHeight":123,
+       "snapshotBlockID":
+	   "0f4ea1c3cfb61b99d38
+	   7b26aaadf57936a528e
+	   5c713c6e55aa06f4d62
+	   1b7e6f0"
+    }
+]</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tab-pane" aria-labelledby="tabset6_sample">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const customConfig =
+{
+	// Other types of configurations.
+	"legacy": {
+		"sync": true,
+		"brackets": [{"startHeight": 1,"snapshotHeight": 123,"snapshotBlockID": "0f4ea1c3cfb61b99d387b26aaadf57936a528e5c713c6e55aa06f4d621b7e6f0"}]
+	},
+	// Other types of configurations.
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="transactionpool"><a class="anchor" href="#transactionpool"></a>transactionPool</h4>
+<div class="paragraph">
+<p>This type of configuration holds the settings for the transaction pool.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset7_properties"></a>Properties</p>
+</li>
+<li>
+<p><a id="tabset7_sample"></a>Sample</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset7_properties">
+<table class="tableblock frame-all grid-all stripes-hover stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property&#8217;s Name</th>
+<th class="tableblock halign-left valign-top">Datatype</th>
+<th class="tableblock halign-left valign-top">Optionality</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">maxTransactions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of transactions in the pool.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4096</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">maxTransactionsPerAccount</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of transactions in the pool per sender account.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">transactionExpiryTime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the timeout (milliseconds) of the transaction in the pool.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 * 60 * 60 * 1000</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">minEntranceFeePriority</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The minimum fee required for a transaction to be added to the transaction pool.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">minReplacementFeeDifference</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The difference of minimum fee required to replace a transaction with the same nonce</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tab-pane" aria-labelledby="tabset7_sample">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">const customConfig =
+{
+	// Other types of configurations.
+	"transactionPool": {
+		"maxTransactions": 4096,
+		"maxTransactionsPerAccount": 64,
+		"transactionExpiryTime": 3 * 60 * 60 * 1000,
+		"minEntranceFeePriority": "0",
+		"minReplacementFeeDifference": "10",
+	},
+	// Other types of configurations.
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. This is the default value.
+</div>
+</div>
+  <nav class="pagination">
+  <span class="prev"><a href="client-cli.html">Client CLI</a></span>
+  <span class="next"><a href="modules/index.html">Modules</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footerdiv">
+    <p>© 2024 Klayr</p>
+    <!-- <div class="community-section">
+      <p class="community-section__text">Follow Klayr on: </p>
+      <div class="community-section__icons"> -->
+    <div class="community_icons">
+      <a href="https://klayr.chat" title="Discord" target="_blank" class="footer_icon icon-discord"><p>Discord</p></a>
+      <a href="https://github.com/KlayrHQ" title="GitHub" target="_blank" class="footer_icon icon-github"><p>GitHub</p></a>
+      <!--    </div> -->
+    </div>
+  </div>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<script async src="../_/js/vendor/glossary.js"></script>
+<script async src="../_/js/vendor/tabs-block-behaviour.js"></script>
+<script async src="../_/js/vendor/swagger-ui.js"></script>
+<script async src="../_/js/vendor/component-versions.js"></script>
+<script src="../_/js/vendor/custom.js"></script>
+  <script src="../_/js/vendor/docsearch.js"></script>
+  <!--<script src="../_/js/vendor/docsearch.min.js"></script>-->
+  <!--<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@alpha"></script>-->
+  <script>
+    docsearch({
+      container: '#docsearch',
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs'
+    });
+    docsearch({
+      container: '#docsearch-toolbar',
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs'
+    });
+  </script>
+  <!--<script>
+    function focusSearchInput () { document.querySelector('#search-input').focus() }
+    var search = docsearch({
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs',
+      inputSelector: '#search-input',
+      autocompleteOptions: { hint: false, keyboardShortcuts: ['s'] },
+      algoliaOptions: { hitsPerPage: 10 }
+    }).autocomplete
+    search.on('autocomplete:closed', function () { search.autocomplete.setVal() })
+    focusSearchInput()
+    window.addEventListener('load', focusSearchInput)
+  </script>-->
+  <!--  <script>
+    function focusSearchInputToolbar () { document.querySelector('#search-input-toolbar').focus() }
+    var search = docsearch({
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs',
+      inputSelector: '#search-input-toolbar',
+      autocompleteOptions: { hint: false, keyboardShortcuts: ['s'] },
+      algoliaOptions: { hitsPerPage: 10 }
+    }).autocomplete
+    search.on('autocomplete:closed', function () { search.autocomplete.setVal() })
+    focusSearchInputToolbar()
+    window.addEventListener('load', focusSearchInputToolbar)
+  </script>-->
+
+  </body>
+</html>

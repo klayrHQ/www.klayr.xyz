@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Handle config files :: Lisk documentation</title>
+    <link rel="canonical" href="https://lisk.com/documentation/lisk-core/v2/management/configuration.html">
+    <link rel="prev" href="source.html">
+    <link rel="next" href="forging.html">
+    <meta name="description" content="How to configure Lisk Core.">
+    <meta name="generator" content="Antora 3.1.1">
+
+  <link id="theme" rel="stylesheet" title="Default" href="../../../_/css/site.css">
+  <link rel="stylesheet" title="Dark" href="../../../_/css/dark-site.css">
+
+    <script>var uiRootPath = '../../../_'</script>
+    <script src="../../../_/js/vendor/medium-zoom.js"></script>
+    <script type="text/javascript" id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="e4db29b5-cd94-4bcf-87e4-04f4ca564240" data-blockingmode="manual"></script>
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://lisk.matomo.cloud/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '2']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src='//cdn.matomo.cloud/lisk.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+    <!-- Matomo Tag Manager -->
+    <script>
+      var _mtm = window._mtm = window._mtm || [];
+      _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src='https://cdn.matomo.cloud/lisk.matomo.cloud/container_RUW6y8yf.js'; s.parentNode.insertBefore(g,s);
+    </script>
+    <!-- End Matomo Tag Manager -->
+<link rel="icon" href="../../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="top-logo">
+        <a href="../../.." class="lisk-logo"></a>
+        <a href="../../.." class="docs-logo"></a>
+      </div>
+      <!--<a class="navbar-item" href="https://lisk.com/documentation">Lisk documentation</a>-->
+        <div id="docsearch" class="navbar-menu search-box hide-for-print">
+          <!--<input id="search-input-toolbar" type="text" placeholder="Search me ...">-->
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">APIs</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../../api/lisk-node-http.html">Lisk node HTTP API</a>
+            <a class="navbar-item" href="../../../api/lisk-node-rpc.html">Lisk node RPC API</a>
+            <a class="navbar-item" href="../../../api/lisk-service-http.html">Lisk Service HTTP API</a>
+            <a class="navbar-item" href="../../../api/lisk-service-rpc.html">Lisk Service RPC API</a>
+            <a class="navbar-item" href="../../../api/lisk-service-pubsub.html">Lisk Service Pub/Sub API</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Explorers</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://lisk.observer/" target="_blank">Lisk Observer</a>
+            <a class="navbar-item" href="https://liskscan.com/" target="_blank">LiskScan</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../../lisk-sdk/">Lisk SDK</a>
+            <a class="navbar-item" href="../../../lisk-service/">Lisk Service</a>
+            <a class="navbar-item" href="../../../lisk-core/">Lisk Core</a>
+            <a class="navbar-item" href="https://lisk.com/wallet" target="_blank">Lisk Wallets</a>
+          </div>
+        </div>
+        <button onclick="switch_style('toggle')" id="theme-toggle" class="theme-toggle navbar-item"></button>
+        <!-- <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div> -->
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+  <div class="components-versions">
+      <div class="page-components">
+    <button class="component-menu-toggle" title="Show other documentations">Lisk Core</button>
+    <div class="component-menu">
+        <a class="component is-current" href="../index.html">Lisk Core</a>
+        <a class="component" href="../../../lisk-docs-manual/index.html">Lisk docs manual</a>
+        <a class="component" href="../../../beta/index.html">Lisk Documentation</a>
+        <a class="component" href="../../../lisk-sdk/index.html">Lisk SDK</a>
+        <a class="component" href="../../../lisk-service/v0.7/index.html">Lisk Service</a>
+    </div>
+  </div>
+    <span></span>
+    <div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">2.1.7</button>
+  <div class="version-menu">
+    <a class="version" href="../../v4/management/configuration.html">4.0.0-beta.0</a>
+    <a class="version is-current" href="configuration.html">2.1.7</a>
+  </div>
+</div>
+  </div>
+  <span></span>
+  <span></span>
+  <a href="../../../beta/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Lisk Core</a></li>
+    <li>Management</li>
+    <li><a href="configuration.html">Handle config files</a></li>
+  </ul>
+</nav>
+    <div id="docsearch-toolbar" class="search-box hide-for-print toolbar-search">
+      <!--<input id="search-input" type="text" placeholder="Search me ...">-->
+    </div>
+  <div class="edit-this-page"><a href="https://github.com/LiskHQ/lisk-docs/edit/docs-core-v2/modules/ROOT/pages/management/configuration.adoc"><img class="pencil">Edit this Page</a></div>
+  </div>
+<div class="body">
+<div class="nav-container" data-component="lisk-core" data-version="v2">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Lisk Core</a></h3>
+<ul class="nav-list">
+  <li class="nav-item parent" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Lisk Core introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../interact-with-the-api.html">Interact with the API</a>
+  </li>
+  <li class="nav-item parent" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Setup</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../setup/application.html">Application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../setup/commander.html">Commander application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../setup/docker.html">Docker image</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../setup/source.html">Source code</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item parent" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Management</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="application.html">Application commands</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="commander.html">Commander application commands</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="docker.html">Docker image commands</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="source.html">Source code commands</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="configuration.html">Handle config files</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="forging.html">Enable forging</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item parent" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Update</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update/application.html">Application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update/commander.html">Commander application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update/docker.html">Docker image</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update/source.html">Source code</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../monitoring.html">Monitoring</a>
+  </li>
+  <li class="nav-item parent" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/api-mainnet.html">API (Mainnet)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/api.html">API (Testnet)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../reference/config.html">Configuration</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Lisk Core</span>
+    <span class="version">2.1.7</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Lisk Core</a>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../v4/index.html">4.0.0-beta.0</a>
+        </li>
+        <li class="version is-current is-latest">
+          <a href="../index.html">2.1.7</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../lisk-docs-manual/index.html">Lisk docs manual</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../lisk-docs-manual/index.html">0.1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../beta/index.html">Lisk Documentation</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../beta/index.html">beta</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../lisk-sdk/index.html">Lisk SDK</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../lisk-sdk/index.html">5.2.2 (latest)</a>
+        </li>
+        <li class="version">
+          <a href="../../../lisk-sdk/v6/index.html">6.0.0 (beta)</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../lisk-service/v0.7/index.html">Lisk Service</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../lisk-service/v0.7/index.html">0.7.0 (beta)</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Handle config files</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#network_specific_config">Network-specific config files</a></li>
+<li><a href="#custom-config-file">Custom config file</a></li>
+<li><a href="#order">Config load order</a></li>
+<li><a href="#further-management-guides">Further management guides</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you are using the Docker image, Lisk Core is configured in a slightly different manner.
+Please go to the <a href="docker.html#config" class="xref page">Docker image commands</a> page to find out more about the Docker image specific configuration of the Lisk Core.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="network_specific_config"><a class="anchor" href="#network_specific_config"></a>Network-specific config files</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The root folder for all configurations is <code>config/</code>.
+The <strong>default</strong> network is <code>devnet</code>.
+To connect to another network, specify the <code>network</code> when starting the Lisk Core, as described in the <a href="../reference/config.html#clo" class="xref page">Configuration reference</a>.
+The <strong>network specific configurations</strong> can be found under <code>config/&lt;network&gt;/config.json</code>, whereby <code>&lt;network&gt;</code> can be any of these values listed below:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>devnet</code></p>
+</li>
+<li>
+<p><code>alphanet</code></p>
+</li>
+<li>
+<p><code>betanet</code></p>
+</li>
+<li>
+<p><code>testnet</code></p>
+</li>
+<li>
+<p><code>mainnet</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Do not override any value in the files mentioned above, as the changes will be overwritten everytime the Lisk Core is upgraded.
+If a custom configuration is required, use the environment variables or alternatively create your own <code>.json</code> file and pass it as a <a href="../reference/config.html#clo" class="xref page">command line option</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="custom-config-file"><a class="anchor" href="#custom-config-file"></a>Custom config file</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use a custom config, firstly create a <code>.json</code>-file.
+Further information can be found in the <a href="../reference/config.html#structure" class="xref page">Config structure</a> section.</p>
+</div>
+<div class="paragraph">
+<p>Only the values required to be updated are needed, as for all other options the pre-defined values will be used as described in the <a href="#order">Config load order</a> section.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Application</strong> and <strong>Commander application</strong> distributions both provide a config.json, which can be customized as desired.</p>
+</div>
+<div class="paragraph">
+<p>For the <strong>Source code</strong>, the config file needs to be created separately and needs to be passed as described below:</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_application"></a>Application</p>
+</li>
+<li>
+<p><a id="tabset1_commander-application"></a>Commander application</p>
+</li>
+<li>
+<p><a id="tabset1_source-code"></a>Source code</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_application">
+<div class="paragraph">
+<p>The application script provides a custom <code>config.json</code> which is stored in the root folder of your Lisk Core installation by default.</p>
+</div>
+<div class="paragraph">
+<p>For example, Lisk Core for Mainnet is installed under <code>~/lisk-main</code>, and the config is stored directly in <code>~/lisk-main/config.json</code></p>
+</div>
+<div class="paragraph">
+<p>The config.json will be used automatically when reloading the node with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bash lisk.sh reload</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_commander-application">
+<div class="paragraph">
+<p>Lisk Commander provides a custom <code>config.json</code> which is stored in the root folder of your Lisk Core instance by default.</p>
+</div>
+<div class="paragraph">
+<p>For example, Lisk Core for Mainnet is installed under <code>~/.lisk/instances/lisk-mainnet</code>, and the config is stored directly in <code>~/.lisk/instances/lisk-main/config.json</code></p>
+</div>
+<div class="paragraph">
+<p>The config.json will be used automatically when reloading the node with the following command:</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_source-code">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pm2 stop lisk <i class="conum" data-value="1"></i><b>(1)</b>
+LISK_CONFIG_FILE=&lt;CONFIG_PATH&gt; pm2 start lisk <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Stop Lisk Core in the case whereby it is running.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Replace <code>&lt;CONFIG_PATH&gt;</code> with the path to your custom config file.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="order"><a class="anchor" href="#order"></a>Config load order</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Configurations will be loaded in the following order listed below.
+Each configuration will override the previous one:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Default configuration values of modules and components of the <a href="#v3@lisk-sdk::references/lisk-framework/index.adoc" class="xref unresolved">Lisk Framework</a>.</p>
+</li>
+<li>
+<p><a href="#network_specific_config">Network specific configuration file</a>.</p>
+</li>
+<li>
+<p>A <a href="../reference/config.html#clo" class="xref page">custom configuration file</a>, (if specified by the user).</p>
+</li>
+<li>
+<p><a href="../reference/config.html#clo" class="xref page">Command line configurations</a>, specified as command-line flags or <code>ENV</code> variables.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For development purposes, use <code>devnet</code> as the network option.
+Other networks are specific to public Lisk networks.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="further-management-guides"><a class="anchor" href="#further-management-guides"></a>Further management guides</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="forging.html" class="xref page">Forging</a></p>
+</li>
+<li>
+<p><a href="#v3@lisk-sdk::guides/node-management/logging.adoc" class="xref unresolved">Logging</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="source.html">Source code commands</a></span>
+  <span class="next"><a href="forging.html">Enable forging</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footerdiv">
+    <p>© 2022 Lisk Foundation</p>
+    <!-- <div class="community-section">
+      <p class="community-section__text">Follow Lisk on: </p>
+      <div class="community-section__icons"> -->
+    <div class="community_icons">
+        <a href="https://lisk.chat" title="Discord" target="_blank" class="footer_icon icon-discord"><p>Discord</p></a>
+        <a href="https://dev.lisk.com" title="Discourse" target="_blank" class="footer_icon icon-discourse"><p>Discourse</p></a>
+        <a href="https://github.com/LiskHQ" title="GitHub" target="_blank" class="footer_icon icon-github"><p>GitHub</p></a>
+  <!--    </div> -->
+    </div>
+  </div>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script async src="../../../_/js/vendor/tabs-block-behaviour.js"></script>
+<script async src="../../../_/js/vendor/swagger-ui.js"></script>
+<script async src="../../../_/js/vendor/component-versions.js"></script>
+<script src="../../../_/js/vendor/custom.js"></script>
+  <script src="../../../_/js/vendor/docsearch.js"></script>
+  <!--<script src="../../../_/js/vendor/docsearch.min.js"></script>-->
+  <!--<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@alpha"></script>-->
+  <script>
+    docsearch({
+      container: '#docsearch',
+        appId: 'C4SU57KGV9',
+      apiKey: '55aa8709b04eb62f08f87571cf77547c',
+      indexName: 'lisk-docs-search'
+    });
+    docsearch({
+      container: '#docsearch-toolbar',
+        appId: 'C4SU57KGV9',
+      apiKey: '55aa8709b04eb62f08f87571cf77547c',
+      indexName: 'lisk-docs-search'
+    });
+  </script>
+  <!--<script>
+    function focusSearchInput () { document.querySelector('#search-input').focus() }
+    var search = docsearch({
+        appId: 'C4SU57KGV9',
+      apiKey: '55aa8709b04eb62f08f87571cf77547c',
+      indexName: 'lisk-docs-search',
+      inputSelector: '#search-input',
+      autocompleteOptions: { hint: false, keyboardShortcuts: ['s'] },
+      algoliaOptions: { hitsPerPage: 10 }
+    }).autocomplete
+    search.on('autocomplete:closed', function () { search.autocomplete.setVal() })
+    focusSearchInput()
+    window.addEventListener('load', focusSearchInput)
+  </script>-->
+<!--  <script>
+    function focusSearchInputToolbar () { document.querySelector('#search-input-toolbar').focus() }
+    var search = docsearch({
+        appId: 'C4SU57KGV9',
+      apiKey: '55aa8709b04eb62f08f87571cf77547c',
+      indexName: 'lisk-docs-search',
+      inputSelector: '#search-input-toolbar',
+      autocompleteOptions: { hint: false, keyboardShortcuts: ['s'] },
+      algoliaOptions: { hitsPerPage: 10 }
+    }).autocomplete
+    search.on('autocomplete:closed', function () { search.autocomplete.setVal() })
+    focusSearchInputToolbar()
+    window.addEventListener('load', focusSearchInputToolbar)
+  </script>-->
+  </body>
+</html>

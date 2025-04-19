@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Docker setup :: Klayr documentation</title>
+    <link rel="canonical" href="https://klayr.xyz/documentation/klayr-core/setup/docker.html">
+    <link rel="prev" href="binary.html">
+    <link rel="next" href="source.html">
+    <meta name="description" content="How to install and setup up a Klayr Core node with Docker.">
+    <meta name="generator" content="Antora 3.1.1">
+
+<link id="theme" rel="stylesheet" title="Default" href="../../_/css/site.css">
+<link rel="stylesheet" title="Dark" href="../../_/css/dark-site.css">
+
+<script>var uiRootPath = '../../_'</script>
+<script src="../../_/js/vendor/medium-zoom.js"></script>
+<script type="text/javascript" id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="e4db29b5-cd94-4bcf-87e4-04f4ca564240" data-blockingmode="manual"></script>
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://klayr.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/klayr.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+<!-- Matomo Tag Manager -->
+<script>
+  var _mtm = window._mtm = window._mtm || [];
+  _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+  g.async=true; g.src='https://cdn.matomo.cloud/klayr.matomo.cloud/container_RUW6y8yf.js'; s.parentNode.insertBefore(g,s);
+</script>
+<!-- End Matomo Tag Manager -->
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="top-logo">
+        <a href="../.." class="klayr-logo"></a>
+        <a href="../.." class="docs-logo"></a>
+      </div>
+      <!--<a class="navbar-item" href="https://klayr.xyz/documentation">Klayr documentation</a>-->
+        <div id="docsearch" class="navbar-menu search-box hide-for-print">
+          <!--<input id="search-input-toolbar" type="text" placeholder="Search me ...">-->
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">APIs</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../api/klayr-node-rpc.html">Klayr node RPC API</a>
+            <a class="navbar-item" href="../../api/klayr-service-http.html">Klayr Service HTTP
+              API</a>
+            <a class="navbar-item" href="../../api/klayr-service-rpc.html">Klayr Service RPC
+              API</a>
+            <a class="navbar-item" href="../../api/klayr-service-pubsub.html">Klayr Service
+              Pub/Sub API</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Explorers</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://explorer.klayr.xyz" target="_blank">Klayr Explorer</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../klayr-sdk/">Klayr SDK</a>
+            <a class="navbar-item" href="../../klayr-service/">Klayr Service</a>
+            <a class="navbar-item" href="../../klayr-core/">Klayr Core</a>
+            <a class="navbar-item" href="https://klayr.xyz/wallet" target="_blank">Klayr Wallets</a>
+          </div>
+        </div>
+        <button onclick="switch_style('toggle')" id="theme-toggle" class="theme-toggle navbar-item"></button>
+        <!-- <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div> -->
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+  <div class="components-versions">
+      <div class="page-components">
+    <button class="component-menu-toggle" title="Show other documentations">Klayr Core</button>
+    <div class="component-menu">
+        <a class="component is-current" href="../index.html">Klayr Core</a>
+        <a class="component" href="../../index.html">Klayr Documentation</a>
+        <a class="component" href="../../klayr-sdk/index.html">Klayr SDK</a>
+        <a class="component" href="../../klayr-service/index.html">Klayr Service</a>
+    </div>
+  </div>
+    <span></span>
+      </div>
+  <span></span>
+  <span></span>
+    <a href="../../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Klayr Core</a></li>
+    <li>Setup</li>
+    <li><a href="docker.html">Docker setup</a></li>
+  </ul>
+</nav>
+    <div id="docsearch-toolbar" class="search-box hide-for-print toolbar-search">
+      <!--<input id="search-input" type="text" placeholder="Search me ...">-->
+    </div>
+  <div class="edit-this-page"><a href="https://github.com/KlayrHQ/klayr-core/edit/development/docs/antora/modules/ROOT/pages/setup/docker.adoc">Edit this Page</a></div>
+</div>
+
+<div class="body">
+<div class="nav-container" data-component="klayr-core" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Klayr Core</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Klayr Core</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Setup</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="npm.html">NPM setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="binary.html">Binary setup</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="docker.html">Docker setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="source.html">Source code setup</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Update</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update/update-docker.html">Update Klayr Core (Docker)</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Management</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../management/configuration.html">Configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../management/migration.html">Testnet and Mainnet Klayr migration guide</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../core-cli.html">Core CLI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Klayr Core</span>
+    <span class="version">4.0 (latest)</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Klayr Core</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">4.0 (latest)</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../index.html">Klayr Documentation</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../index.html">default</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../klayr-sdk/index.html">Klayr SDK</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../klayr-sdk/index.html">6.0 (latest)</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../klayr-service/index.html">Klayr Service</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../klayr-service/index.html">0.7 (latest)</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+      <h1 class="page">Docker setup</h1>
+    <div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#pre-installation">Pre-installation</a>
+<ul class="sectlevel2">
+<li><a href="#hardware-requirements">Hardware requirements</a></li>
+<li><a href="#create-a-new-user">Create a new user</a></li>
+<li><a href="#open-ports">Open ports</a></li>
+<li><a href="#install-docker">Install Docker</a></li>
+</ul>
+</li>
+<li><a href="#klayr-core-download">Klayr Core download</a></li>
+<li><a href="#run">Run</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#import-blockchain-snapshot">Import blockchain snapshot</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document describes how to run Klayr Core as a Docker image-based container.
+Klayr Core version 4 does not have any external dependencies and hence does not require using <code>docker-compose</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pre-installation"><a class="anchor" href="#pre-installation"></a>Pre-installation</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="hardware-requirements"><a class="anchor" href="#hardware-requirements"></a>Hardware requirements</h3>
+<div class="paragraph">
+<p>The following system requirements are recommended:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Memory</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Machines with a minimum of 8 GB RAM for the Mainnet.</p>
+</li>
+<li>
+<p>Machines with a minimum of 8 GB RAM for the Testnet.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Storage</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Machines with a minimum of 40 GB HDD<sup class="footnote" id="_footnote_hdd">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-a-new-user"><a class="anchor" href="#create-a-new-user"></a>Create a new user</h3>
+<div class="paragraph">
+<p>To run and manage a Klayr Core node in the future, please create a separate <code>klayr</code> user as described below:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_ubuntu"></a>Ubuntu</p>
+</li>
+<li>
+<p><a id="tabset1_macos"></a>MacOS</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_ubuntu">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>klayr</code> user itself <strong>does not need</strong> any <code>sudo</code> rights to run the Klayr Core.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo adduser klayr</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above command will create a new user.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_macos">
+<div class="paragraph">
+<p>It is not necessarily required to set up a <code>klayr</code> user, especially when you are running a local instance for development purposes.</p>
+</div>
+<div class="paragraph">
+<p>However, if it is required then it is recommended to <a href="https://support.apple.com/en-gb/guide/mac-help/mtusr001/mac" target="_blank" rel="noopener">create the user using the MacOS GUI</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="open-ports"><a class="anchor" href="#open-ports"></a>Open ports</h3>
+<div class="paragraph">
+<p>Please ensure, that the <a href="../../understand-blockchain/mainchain.html" class="xref page">necessary ports</a> are open to run Klayr Core as intended.</p>
+</div>
+<div class="paragraph">
+<p>For example, in case <a href="https://wiki.ubuntu.com/UncomplicatedFirewall" target="_blank" rel="noopener">ufw</a> is used on Ubuntu to manage the firewall settings, the respective ports can be opened as follows:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>7667</code> and <code>7887</code> are the default ports.
+If you configured custom ports in the node config file, adjust the examples to these specific ports.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Node P2P communication</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ufw allow 7667</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Node API</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ufw allow 7887</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="install-docker"><a class="anchor" href="#install-docker"></a>Install Docker</h3>
+<div class="paragraph">
+<p>To run Klayr Core in Docker, firstly it is necessary to install the Docker engine.
+Determine if your platform can run Docker as described below.</p>
+</div>
+<div class="paragraph">
+<p>Please refer to the <a href="https://docs.docker.com/engine/installation/#desktop">Docker installation</a> page.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset2_ubuntu"></a>Ubuntu</p>
+</li>
+<li>
+<p><a id="tabset2_macos"></a>MacOS</p>
+</li>
+<li>
+<p><a id="tabset2_windows"></a>Windows</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_ubuntu">
+<div class="paragraph">
+<p>Please refer to the <a href="https://docs.docker.com/engine/installation/#server">Docker installation for ubuntu</a>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Configure Docker, in order that it can be run without <code>sudo</code> rights: <a href="https://docs.docker.com/install/linux/linux-postinstall">linux post install</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Install <code>make</code> using your package manager.
+For example, use <code>apt-get</code> if running Ubuntu as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo apt-get install curl make</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_macos">
+<div class="paragraph">
+<p>Please refer to <a href="https://docs.docker.com/docker-for-mac/install/" target="_blank" rel="noopener">Docker installation for Mac</a>.
+Install <code>make</code> using <a href="https://developer.apple.com/xcode/features/">XCode</a>.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_windows">
+<div class="paragraph">
+<p>Please refer to <a href="https://docs.docker.com/docker-for-windows/install/" target="_blank" rel="noopener">Docker installation for Windows</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="klayr-core-download"><a class="anchor" href="#klayr-core-download"></a>Klayr Core download</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following commands below describe how to clone the repository, then how to navigate into the <code>klayr-core</code> root folder, and how to check out the latest release tag.</p>
+</div>
+<div class="listingblock">
+<div class="title">Clone the repository</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/KlayrHQ/klayr-core.git</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Navigate into the "klayr-core" root folder</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd klayr-core</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Check out the latest release tag</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git checkout v4.0.0</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Build the docker image</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">make build-image</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Please check for the latest release in the <a href="https://github.com/KlayrHQ/klayr-core/releases" target="_blank" rel="noopener">Klayr Core releases</a> list.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="run"><a class="anchor" href="#run"></a>Run</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Podman</div>
+<div class="paragraph">
+<p>It is also possible to use <a href="https://github.com/containers/podman/">podman</a> instead of docker by simply replacing the occurrences of docker with <code>podman</code>, in the following examples or alternatively by creating an alias with <code>alias docker=podman</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Create a "klayr-core" container:</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset3_mainnet"></a>Mainnet</p>
+</li>
+<li>
+<p><a id="tabset3_testnet"></a>Testnet</p>
+</li>
+<li>
+<p><a id="tabset3_devnet"></a>Devnet</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset3_mainnet">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run --volume klayr-data:/home/klayr/.klayr \
+           --publish 7887:7887 \
+           --name klayr-core \
+           klayr/core:4.0.0 \
+           start --network=mainnet</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The default log levels for Mainnet are:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">"logger": {
+    "fileLogLevel": "error",
+    "LogLevel": "none"
+},</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So if you start the node, it won&#8217;t show any logs in the console.
+This is the recommended setting for reducing the number of logs for a running node.
+However, to verify that the node started correctly, update the log levels in the config to <code>info</code> or lower.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, start the node with the following flag:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">start --network mainnet --console-log=info</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset3_testnet">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run --volume klayr-data:/home/klayr/.klayr \
+           --publish 7887:7887 \
+           --name klayr-core \
+           klayr/core:4.0.0 \
+           start --network=testnet</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset3_devnet">
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run --volume klayr-data:/home/klayr/.klayr \
+           --publish 7887:7887 \
+           --name klayr-core \
+           klayr/core:4.0.0 \
+           start --network=devnet</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The passphrase for the genesis account(s) can be found here in the Klayr Core GitHub repository under the following path: <a href="https://github.com/KlayrHQ/klayr-core/blob/development/config/devnet/passphrase.json">config/devnet/passphrase.json</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration"><a class="anchor" href="#configuration"></a>Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Further parameters can be passed after <code>--network</code>, for example, as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run --volume klayr-data:/home/klayr/.klayr \
+           --publish 7667:7667 \
+           --publish 127.0.0.1:7887:7887 \
+           --name klayr-core \
+           klayr/core:4.0.0 \
+           start --network=testnet --api-ws --api-http --log=debug</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Environment variables can be set with <code>--env</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run --volume klayr-data:/home/klayr/.klayr \
+           --publish 7667:7667 \
+           --env KLAYR_CONSOLE_LOG_LEVEL=debug \
+           --name klayr-core \
+           klayr/core:4.0.0 \
+           start --network=mainnet</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="import-blockchain-snapshot"><a class="anchor" href="#import-blockchain-snapshot"></a>Import blockchain snapshot</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run --volume klayr-data:/home/klayr/.klayr -it --rm klayr/core:4.0.0 blockchain download --network=betanet --output=/home/klayr/.klayr/tmp/
+docker run --volume klayr-data:/home/klayr/.klayr -it --rm klayr/core:4.0.0 blockchain import /home/klayr/.klayr/tmp/blockchain.db.tar.gz
+docker run --volume klayr-data:/home/klayr/.klayr -it --rm --entrypoint rm klayr/core:4.0.0 -f /home/klayr/.klayr/tmp/blockchain.db.tar.gz
+docker start klayr-core
+docker logs -f klayr-core</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. These recommendations are derived from the log level settings, in the event that the user needs to increase storage to prevent limited memory access and potential memory-related problems with a node. Furthermore, as more transactions are processed and added to the blockchain, the size of the blockchain increases over time and this directly affects the HDD storage requirements for a blockchain node. Hence, adhering to the above listed requirements is highly recommended.
+</div>
+</div>
+  <nav class="pagination">
+  <span class="prev"><a href="binary.html">Binary setup</a></span>
+  <span class="next"><a href="source.html">Source code setup</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footerdiv">
+    <p>© 2024 Klayr</p>
+    <!-- <div class="community-section">
+      <p class="community-section__text">Follow Klayr on: </p>
+      <div class="community-section__icons"> -->
+    <div class="community_icons">
+      <a href="https://klayr.chat" title="Discord" target="_blank" class="footer_icon icon-discord"><p>Discord</p></a>
+      <a href="https://github.com/KlayrHQ" title="GitHub" target="_blank" class="footer_icon icon-github"><p>GitHub</p></a>
+      <!--    </div> -->
+    </div>
+  </div>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script async src="../../_/js/vendor/glossary.js"></script>
+<script async src="../../_/js/vendor/tabs-block-behaviour.js"></script>
+<script async src="../../_/js/vendor/swagger-ui.js"></script>
+<script async src="../../_/js/vendor/component-versions.js"></script>
+<script src="../../_/js/vendor/custom.js"></script>
+  <script src="../../_/js/vendor/docsearch.js"></script>
+  <!--<script src="../../_/js/vendor/docsearch.min.js"></script>-->
+  <!--<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@alpha"></script>-->
+  <script>
+    docsearch({
+      container: '#docsearch',
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs'
+    });
+    docsearch({
+      container: '#docsearch-toolbar',
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs'
+    });
+  </script>
+  <!--<script>
+    function focusSearchInput () { document.querySelector('#search-input').focus() }
+    var search = docsearch({
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs',
+      inputSelector: '#search-input',
+      autocompleteOptions: { hint: false, keyboardShortcuts: ['s'] },
+      algoliaOptions: { hitsPerPage: 10 }
+    }).autocomplete
+    search.on('autocomplete:closed', function () { search.autocomplete.setVal() })
+    focusSearchInput()
+    window.addEventListener('load', focusSearchInput)
+  </script>-->
+  <!--  <script>
+    function focusSearchInputToolbar () { document.querySelector('#search-input-toolbar').focus() }
+    var search = docsearch({
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs',
+      inputSelector: '#search-input-toolbar',
+      autocompleteOptions: { hint: false, keyboardShortcuts: ['s'] },
+      algoliaOptions: { hitsPerPage: 10 }
+    }).autocomplete
+    search.on('autocomplete:closed', function () { search.autocomplete.setVal() })
+    focusSearchInputToolbar()
+    window.addEventListener('load', focusSearchInputToolbar)
+  </script>-->
+
+  </body>
+</html>

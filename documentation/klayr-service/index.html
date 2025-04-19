@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Klayr Service :: Klayr documentation</title>
+    <link rel="canonical" href="https://klayr.xyz/documentation/klayr-service/index.html">
+    <link rel="next" href="setup/docker.html">
+    <meta name="description" content="Describes the general purpose, architecture and usage of Klayr Service.">
+    <meta name="generator" content="Antora 3.1.1">
+
+<link id="theme" rel="stylesheet" title="Default" href="../_/css/site.css">
+<link rel="stylesheet" title="Dark" href="../_/css/dark-site.css">
+
+<script>var uiRootPath = '../_'</script>
+<script src="../_/js/vendor/medium-zoom.js"></script>
+<script type="text/javascript" id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="e4db29b5-cd94-4bcf-87e4-04f4ca564240" data-blockingmode="manual"></script>
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://klayr.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/klayr.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+<!-- Matomo Tag Manager -->
+<script>
+  var _mtm = window._mtm = window._mtm || [];
+  _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+  g.async=true; g.src='https://cdn.matomo.cloud/klayr.matomo.cloud/container_RUW6y8yf.js'; s.parentNode.insertBefore(g,s);
+</script>
+<!-- End Matomo Tag Manager -->
+<link rel="icon" href="../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="top-logo">
+        <a href=".." class="klayr-logo"></a>
+        <a href=".." class="docs-logo"></a>
+      </div>
+      <!--<a class="navbar-item" href="https://klayr.xyz/documentation">Klayr documentation</a>-->
+        <div id="docsearch" class="navbar-menu search-box hide-for-print">
+          <!--<input id="search-input-toolbar" type="text" placeholder="Search me ...">-->
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">APIs</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../api/klayr-node-rpc.html">Klayr node RPC API</a>
+            <a class="navbar-item" href="../api/klayr-service-http.html">Klayr Service HTTP
+              API</a>
+            <a class="navbar-item" href="../api/klayr-service-rpc.html">Klayr Service RPC
+              API</a>
+            <a class="navbar-item" href="../api/klayr-service-pubsub.html">Klayr Service
+              Pub/Sub API</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Explorers</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://explorer.klayr.xyz" target="_blank">Klayr Explorer</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../klayr-sdk/">Klayr SDK</a>
+            <a class="navbar-item" href="../klayr-service/">Klayr Service</a>
+            <a class="navbar-item" href="../klayr-core/">Klayr Core</a>
+            <a class="navbar-item" href="https://klayr.xyz/wallet" target="_blank">Klayr Wallets</a>
+          </div>
+        </div>
+        <button onclick="switch_style('toggle')" id="theme-toggle" class="theme-toggle navbar-item"></button>
+        <!-- <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div> -->
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+  <div class="components-versions">
+      <div class="page-components">
+    <button class="component-menu-toggle" title="Show other documentations">Klayr Service</button>
+    <div class="component-menu">
+        <a class="component" href="../klayr-core/index.html">Klayr Core</a>
+        <a class="component" href="../index.html">Klayr Documentation</a>
+        <a class="component" href="../klayr-sdk/index.html">Klayr SDK</a>
+        <a class="component is-current" href="index.html">Klayr Service</a>
+    </div>
+  </div>
+    <span></span>
+      </div>
+  <span></span>
+  <span></span>
+    <a href="../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Klayr Service</a></li>
+  </ul>
+</nav>
+    <div id="docsearch-toolbar" class="search-box hide-for-print toolbar-search">
+      <!--<input id="search-input" type="text" placeholder="Search me ...">-->
+    </div>
+  <div class="edit-this-page"><a href="https://github.com/KlayrHQ/klayr-service/edit/development/docs/antora/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+</div>
+
+<div class="body">
+<div class="nav-container" data-component="klayr-service" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Klayr Service</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Setup</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="setup/docker.html">Installation with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="setup/source.html">Installation from source code</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="configuration/index.html">Configuration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="configuration/docker.html">Configuration with Docker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="configuration/source.html">Configuration with PM2</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Management</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="management/snapshots.html">Applying database snapshots</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="management/docker.html">Docker commands</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="management/source.html">PM2 commands</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Klayr Service</span>
+    <span class="version">0.7 (latest)</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../klayr-core/index.html">Klayr Core</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../klayr-core/index.html">4.0 (latest)</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../index.html">Klayr Documentation</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../index.html">default</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../klayr-sdk/index.html">Klayr SDK</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../klayr-sdk/index.html">6.0 (latest)</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="index.html">Klayr Service</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">0.7 (latest)</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+      <h1 class="page">Klayr Service</h1>
+    <div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#architecture">Architecture</a>
+<ul class="sectlevel2">
+<li><a href="#available-services">Available Services</a></li>
+<li><a href="#microservices">Microservices</a></li>
+<li><a href="#microservices-architecture-overview">Microservices Architecture Overview</a></li>
+</ul>
+</li>
+<li><a href="#usage">APIs</a>
+<ul class="sectlevel2">
+<li><a href="#the-http-api">The HTTP API</a></li>
+<li><a href="#the-websocket-json-rpc-api">The WebSocket JSON-RPC API</a></li>
+<li><a href="#the-subscribe-api">The Subscribe API</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://github.com/KlayrHQ/klayr-service" target="_blank" rel="noopener">Klayr Service</a> is a web application middleware that allows interaction with various blockchain networks based on the Klayr protocol.</p>
+</div>
+<div class="paragraph">
+<p>The main focus of Klayr Service is to provide data to the UI clients such as <a href="https://klayr.xyz/wallet">Klayr Desktop</a>.
+Klayr Service makes it possible to access all blockchain live data in a similar way to the regular Klayr SDK API, and in addition provides users with much more detailed in-depth information and endpoints, such as geolocation and various statistics regarding network usage.</p>
+</div>
+<div class="paragraph">
+<p>The project implementation is based on <a href="#microservices">Microservices</a>.
+The technical stack is designed to deliver several microservices, and each of them provides one particular functionality.
+The data is served in JSON format and exposed by a <a href="../api/klayr-service-http.html" class="xref page">public RESTful API</a>, or a WebSocket-based RPC API.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="architecture"><a class="anchor" href="#architecture"></a>Architecture</h2>
+<div class="sectionbody">
+<div class="imageblock text-center">
+<div class="content">
+<img src="_images/architecture.png" alt="Architecture][" width="500">
+</div>
+</div>
+<div class="sect2">
+<h3 id="available-services"><a class="anchor" href="#available-services"></a>Available Services</h3>
+<div class="paragraph">
+<p>Klayr Service consists of various microservices which have been further expanded.
+Briefly, microservices can be defined as an architectural style that structures an application as a collection of small, loosely coupled services, whereby each service can run its own process, and offers the user the ability to reduce the complexity into more manageable services that can be developed, and deployed independently.
+The Gateway is required in order to expose the APIs provided by the specific services.</p>
+</div>
+<div class="paragraph">
+<p>Each microservice is independently managed and is stored separately under the <a href="https://github.com/KlayrHQ/klayr-service/tree/development/services" target="_blank" rel="noopener">services</a> directory.
+They contain their own <code>package.json</code> and <code>Dockerfile</code> that are beneficial for managing dependencies, and packaging a service into a containerized format, whereby it can be easily deployed, and managed in a distributed environment.
+To summarize, these benefits include various aspects such as dependency management, reproducible builds, containerization, versioning, and scalability.</p>
+</div>
+<div class="paragraph">
+<p>An overview of each microservice is given in the following table listed below.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="microservices"><a class="anchor" href="#microservices"></a>Microservices</h3>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. The Klayr Service microservices</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Microservice</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Gateway</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Gateway component exposes the API for Klayr Service users to access and use over HTTP and WS protocols.
+Its main purpose is to proxy API requests from users to other microservice components provided by Klayr Service.
+It provides the users with a <strong>central point of data access</strong> that ensures existing application compatibility is maintained.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Connector</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Blockchain Connector connects with the node running a Klayr protocol-compliant blockchain application.
+It is primarily responsible for data transformation and caching, hence reducing the number of calls made to the node.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Indexer</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Blockchain Indexer contains both an indexer and data service mode.
+The indexer mode is mainly responsible for updating the index, based on the scheduled jobs by the Blockchain Coordinator.
+In the data service mode it serves user request queries initiated via the RESTful API or WebSocket-based RPC calls.
+It has the ability to run both the indexer and data service modes simultaneously, which is enabled by default.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>App Registry</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Blockchain Application Registry service is responsible for regularly synchronizing and providing off-chain metadata information for known blockchain applications within the Klayr ecosystem.
+The metadata is maintained in the Klayr <a href="https://github.com/KlayrHQ/app-registry" target="_blank" rel="noopener">Application Registry</a> repository.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Fee Estimator</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Fee Estimator service implements the <a href="https://github.com/KlayrHQ/lips/blob/main/proposals/lip-0013.md" target="_blank" rel="noopener">dynamic fee system</a> algorithm to offer users transaction fee recommendations based on the network traffic.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Transaction Statistics</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Transaction Statistics service computes various transaction statistics to offer users various real-time network insights.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Market</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Market service allows price data retrieval.
+It supports multiple sources to maintain the current up-to-date Klayr token price, and ensures this is available to the clients in real time.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Export</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Export service enables users to download the transaction history as a CSV file for any given account on the blockchain.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Template</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All Klayr Service services are derived from the Template service, which is an abstract microservice.
+It allows all services to share a similar interface and design pattern.
+The objective of the Template service is to reduce code duplication and increase consistency between each service, hence simplifying code maintenance and testing.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Klayr Service by default attempts to connect to a local node via WebSocket on port <code>7887</code> or IPC on <code>~/.klayr/klayr-core</code> by default.</p>
+</li>
+<li>
+<p>The default installation method is based on Docker.</p>
+</li>
+<li>
+<p>Please note that certain token conversion rates in the Market service require their API keys.</p>
+</li>
+<li>
+<p>For the events information to be always available in the API, please set the <code>system.keepEventsForHeights: -1</code> in the Klayr application node config.</p>
+</li>
+<li>
+<p>It is highly recommended <strong>NOT</strong> to enable any plugins on the Klayr application node when running Klayr Service against it. Enabling them can cause performance issues in Klayr Service.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following diagram below depicts an overview of the microservice architecture.
+The inter-microservice communications are enabled with a message broker.
+This is generally an instance of <a href="http://redis.io" target="_blank" rel="noopener">Redis</a> or <a href="http://nats.io/" target="_blank" rel="noopener">NATS</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="microservices-architecture-overview"><a class="anchor" href="#microservices-architecture-overview"></a>Microservices Architecture Overview</h3>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mservice_architecture.png" alt="mservice architecture">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage"><a class="anchor" href="#usage"></a>APIs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Gateway service provides the following APIs, which all users of Klayr Service can access and use.</p>
+</div>
+<div class="paragraph">
+<p>Once Klayr Service is <a href="setup/docker.html" class="xref page">set up</a>, <a href="configuration/docker.html" class="xref page">configured</a>, and started, it is possible to retrieve data from the blockchain network.</p>
+</div>
+<div class="paragraph">
+<p>Klayr Service provides the data through several alternative APIs described below:</p>
+</div>
+<div class="sect2">
+<h3 id="the-http-api"><a class="anchor" href="#the-http-api"></a>The HTTP API</h3>
+<div class="paragraph">
+<p>The <a href="../api/klayr-service-http.html" class="xref page">HTTP API</a> is the public RESTful API that provides blockchain data in standardized JSON format.</p>
+</div>
+<div class="paragraph">
+<p>The HTTP API provides various endpoints that offer more extensive information in comparison to the HTTP API of that of a normal Klayr node.
+This API can be utilized to build powerful wallets and user interfaces for blockchain applications which are built with the Klayr SDK.</p>
+</div>
+<div class="sect3">
+<h4 id="public-klayr-service-apis"><a class="anchor" href="#public-klayr-service-apis"></a>Public Klayr Service APIs</h4>
+<div class="paragraph">
+<p>There is a public HTTP API for every public Klayr blockchain network, which can be used to query the desired information from the network.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Klayr Mainnet</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Public API base URL: <code><a href="https://service.klayr.xyz/api/v3" class="bare">https://service.klayr.xyz/api/v3</a></code></p>
+</li>
+<li>
+<p>API specification: <a href="../api/klayr-service-http.html" class="xref page">Klayr Service HTTP API reference (Mainnet)</a></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Klayr Testnet</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Public API base URL: <code><a href="https://testnet-service.klayr.xyz/api/v3" class="bare">https://testnet-service.klayr.xyz/api/v3</a></code></p>
+</li>
+<li>
+<p>API specification: <a href="../api/klayr-service-http-testnet.html" class="xref page">Klayr Service HTTP API reference (Testnet)</a></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In the Public API base URLs listed above, in order to fetch the required entities it is necessary to add them at the end of the respective URL. e.g., <code>/blocks</code>, and <code>/transactions</code>, etc.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://service.klayr.xyz/api/v3/transactions" class="bare">https://service.klayr.xyz/api/v3/transactions</a></p>
+</li>
+<li>
+<p><a href="https://testnet-service.klayr.xyz/api/v3/transactions" class="bare">https://testnet-service.klayr.xyz/api/v3/transactions</a></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="the-websocket-json-rpc-api"><a class="anchor" href="#the-websocket-json-rpc-api"></a>The WebSocket JSON-RPC API</h3>
+<div class="paragraph">
+<p>The <a href="https://github.com/KlayrHQ/klayr-service/blob/v0.7.7/docs/api/version3.md" target="_blank" rel="noopener">WebSocket JSON-RPC API</a> provides blockchain data in standardized JSON format.
+The API uses the Socket.IO library and is compatible with JSON-RPC 2.0 standards.
+This enables efficient and seamless integration within the Klayr blockchain network, coupled with offering a more responsive, and efficient alternative to the traditional HTTP based APIs.</p>
+</div>
+<div class="paragraph">
+<p>The <a href="../api/klayr-node-rpc.html" class="xref page">RPC-API</a> reference provides an overview of all available RPC requests.
+Almost every HTTP endpoint exposes a corresponding JSON-RPC endpoint to query over WebSocket.
+The only exception is the <code>/export/download</code> endpoint.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Klayr Mainnet</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Public API: <code>wss://service.klayr.xyz/rpc-v3</code></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Klayr Testnet</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Public API: <code>wss://testnet-service.klayr.xyz/rpc-v3</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="the-subscribe-api"><a class="anchor" href="#the-subscribe-api"></a>The Subscribe API</h3>
+<div class="paragraph">
+<p>The <a href="https://github.com/KlayrHQ/klayr-service/blob/v0.7.7/docs/api/websocket_subscribe_api.md" target="_blank" rel="noopener">Subscribe API</a> is an event-driven API that uses a two-way streaming connection, which can notify the client about new data instantly as it arrives.
+It is responsible for updating users regarding changes in the blockchain network and markets.
+The Subscribe API is particularly useful for providing the user with real-time data, e.g., real-time monitoring systems, notification services, and applications that need to react immediately to specific events that occur on the blockchain.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Check out the <a href="../api/klayr-service-pubsub.html" class="xref page">Publish/Subscribe API (Klayr Service)</a> reference for an overview of all available RPC requests.
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Klayr Mainnet</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Public API: <code>wss://service.klayr.xyz/blockchain</code></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Klayr Testnet</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Public API: <code>wss://testnet-service.klayr.xyz/blockchain</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+  <nav class="pagination">
+  <span class="next"><a href="setup/docker.html">Installation with Docker</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footerdiv">
+    <p>© 2024 Klayr</p>
+    <!-- <div class="community-section">
+      <p class="community-section__text">Follow Klayr on: </p>
+      <div class="community-section__icons"> -->
+    <div class="community_icons">
+      <a href="https://klayr.chat" title="Discord" target="_blank" class="footer_icon icon-discord"><p>Discord</p></a>
+      <a href="https://github.com/KlayrHQ" title="GitHub" target="_blank" class="footer_icon icon-github"><p>GitHub</p></a>
+      <!--    </div> -->
+    </div>
+  </div>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<script async src="../_/js/vendor/glossary.js"></script>
+<script async src="../_/js/vendor/tabs-block-behaviour.js"></script>
+<script async src="../_/js/vendor/swagger-ui.js"></script>
+<script async src="../_/js/vendor/component-versions.js"></script>
+<script src="../_/js/vendor/custom.js"></script>
+  <script src="../_/js/vendor/docsearch.js"></script>
+  <!--<script src="../_/js/vendor/docsearch.min.js"></script>-->
+  <!--<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@alpha"></script>-->
+  <script>
+    docsearch({
+      container: '#docsearch',
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs'
+    });
+    docsearch({
+      container: '#docsearch-toolbar',
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs'
+    });
+  </script>
+  <!--<script>
+    function focusSearchInput () { document.querySelector('#search-input').focus() }
+    var search = docsearch({
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs',
+      inputSelector: '#search-input',
+      autocompleteOptions: { hint: false, keyboardShortcuts: ['s'] },
+      algoliaOptions: { hitsPerPage: 10 }
+    }).autocomplete
+    search.on('autocomplete:closed', function () { search.autocomplete.setVal() })
+    focusSearchInput()
+    window.addEventListener('load', focusSearchInput)
+  </script>-->
+  <!--  <script>
+    function focusSearchInputToolbar () { document.querySelector('#search-input-toolbar').focus() }
+    var search = docsearch({
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs',
+      inputSelector: '#search-input-toolbar',
+      autocompleteOptions: { hint: false, keyboardShortcuts: ['s'] },
+      algoliaOptions: { hitsPerPage: 10 }
+    }).autocomplete
+    search.on('autocomplete:closed', function () { search.autocomplete.setVal() })
+    focusSearchInputToolbar()
+    window.addEventListener('load', focusSearchInputToolbar)
+  </script>-->
+
+  </body>
+</html>

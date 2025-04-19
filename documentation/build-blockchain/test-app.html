@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Testing the blockchain application :: Klayr documentation</title>
+    <link rel="canonical" href="https://klayr.xyz/documentation/build-blockchain/test-app.html">
+    <link rel="prev" href="interoperable-module/execute-ccm.html">
+    <link rel="next" href="../run-blockchain/index.html">
+    <meta name="generator" content="Antora 3.1.1">
+
+<link id="theme" rel="stylesheet" title="Default" href="../_/css/site.css">
+<link rel="stylesheet" title="Dark" href="../_/css/dark-site.css">
+
+<script>var uiRootPath = '../_'</script>
+<script src="../_/js/vendor/medium-zoom.js"></script>
+<script type="text/javascript" id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="e4db29b5-cd94-4bcf-87e4-04f4ca564240" data-blockingmode="manual"></script>
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://klayr.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/klayr.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+<!-- Matomo Tag Manager -->
+<script>
+  var _mtm = window._mtm = window._mtm || [];
+  _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+  g.async=true; g.src='https://cdn.matomo.cloud/klayr.matomo.cloud/container_RUW6y8yf.js'; s.parentNode.insertBefore(g,s);
+</script>
+<!-- End Matomo Tag Manager -->
+<link rel="icon" href="../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="top-logo">
+        <a href=".." class="klayr-logo"></a>
+        <a href=".." class="docs-logo"></a>
+      </div>
+      <!--<a class="navbar-item" href="https://klayr.xyz/documentation">Klayr documentation</a>-->
+        <div id="docsearch" class="navbar-menu search-box hide-for-print">
+          <!--<input id="search-input-toolbar" type="text" placeholder="Search me ...">-->
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">APIs</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../api/klayr-node-rpc.html">Klayr node RPC API</a>
+            <a class="navbar-item" href="../api/klayr-service-http.html">Klayr Service HTTP
+              API</a>
+            <a class="navbar-item" href="../api/klayr-service-rpc.html">Klayr Service RPC
+              API</a>
+            <a class="navbar-item" href="../api/klayr-service-pubsub.html">Klayr Service
+              Pub/Sub API</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Explorers</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://explorer.klayr.xyz" target="_blank">Klayr Explorer</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../klayr-sdk/">Klayr SDK</a>
+            <a class="navbar-item" href="../klayr-service/">Klayr Service</a>
+            <a class="navbar-item" href="../klayr-core/">Klayr Core</a>
+            <a class="navbar-item" href="https://klayr.xyz/wallet" target="_blank">Klayr Wallets</a>
+          </div>
+        </div>
+        <button onclick="switch_style('toggle')" id="theme-toggle" class="theme-toggle navbar-item"></button>
+        <!-- <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div> -->
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+  <div class="components-versions">
+      <div class="page-components">
+    <button class="component-menu-toggle" title="Show other documentations">Klayr Documentation</button>
+    <div class="component-menu">
+        <a class="component" href="../klayr-core/index.html">Klayr Core</a>
+        <a class="component is-current" href="../index.html">Klayr Documentation</a>
+        <a class="component" href="../klayr-sdk/index.html">Klayr SDK</a>
+        <a class="component" href="../klayr-service/index.html">Klayr Service</a>
+    </div>
+  </div>
+    <span></span>
+      </div>
+  <span></span>
+  <span></span>
+    <a href="../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Klayr Documentation</a></li>
+    <li><a href="index.html">Build Blockchain</a></li>
+    <li><a href="test-app.html">Testing the blockchain application</a></li>
+  </ul>
+</nav>
+    <div id="docsearch-toolbar" class="search-box hide-for-print toolbar-search">
+      <!--<input id="search-input" type="text" placeholder="Search me ...">-->
+    </div>
+  <div class="edit-this-page"><a href="https://github.com/KlayrHQ/klayr-docs/edit/development/docs/modules/ROOT/pages/build-blockchain/test-app.adoc">Edit this Page</a></div>
+</div>
+
+<div class="body">
+<div class="nav-container" data-component="ROOT" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Klayr Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Introduction</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/what-is-blockchain.html">What is blockchain?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/how-blockchain-works.html">How blockchain works</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/blockchain-scalability.html">Blockchain Scalability</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/klayr-products.html">Klayr products</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/blockchain-interoperability.html">Blockchain Interoperability</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../understand-blockchain/index.html">Understand Klayr Blockchain</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../understand-blockchain/state-machine.html">State machine</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../understand-blockchain/consensus/index.html">Consensus protocols</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../understand-blockchain/consensus/pos-poa.html">Proof of Stake (PoS) &amp; Proof of Authority (PoA) in Klayr</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../understand-blockchain/network.html">Network</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../understand-blockchain/mainchain.html">Mainchain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../understand-blockchain/interoperability/index.html">Klayr Interoperability</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../understand-blockchain/interoperability/communication.html">Cross-chain communication</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../understand-blockchain/interoperability/sidechain-registration-and-recovery.html">Sidechain Registration &amp; Recovery</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../understand-blockchain/blocks-txs.html">Blocks and Transactions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Klayr SDK</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../understand-blockchain/sdk/modules-commands.html">Modules and Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../understand-blockchain/sdk/plugins.html">Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../understand-blockchain/sdk/rpc.html">Communicating to a Klayr node via RPC</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../understand-blockchain/sdk/codec-schema.html">Schemas &amp; Codec</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Build Blockchain</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="create-blockchain-client.html">Creating a new blockchain client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="configuration.html">Blockchain client configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="module/index.html">How to create a module</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="module/configuration.html">1. How to create a module configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="module/stores.html">2. How to create stores</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="module/command.html">3. How to create a command</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="module/endpoints-methods.html">4. How to create endpoints and methods</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="module/blockchain-event.html">5. How to create a blockchain event</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="plugin/index.html">How to create a plugin</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin/schema-types.html">1. Defining off-chain data structures</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin/offchain-db.html">2. Setting up an Off-chain database</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin/configuring-plugin.html">3. Configuring a Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin/plugin-class.html">4. Updating the Plugin Class</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plugin/plugin-endpoints.html">5. Creating an endpoint &amp; Testing the plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="using-dashboard.html">Using the Dashboard with a blockchain client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="enable-faucet.html">How to enable a Faucet for testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="create-genesis-block.html">How to create a new genesis block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="register-sidechain.html">How to register a sidechain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="interoperable-module/index.html">How to implement cross-chain communication</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="interoperable-module/create-ccm.html">How to create a CCM</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="interoperable-module/execute-ccm.html">How to execute a CCM</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="test-app.html">Testing the blockchain application</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../run-blockchain/index.html">Run Blockchain</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../run-blockchain/process-management.html">Process management with PM2</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../run-blockchain/account-management.html">Managing accounts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../run-blockchain/become-a-validator.html">How to become a validator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../run-blockchain/staking.html">How to stake and un-stake tokens</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../run-blockchain/enable-block-generation.html">How to enable/disable block generation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../run-blockchain/reward-sharing.html">How to share block rewards</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../run-blockchain/setup-relayer.html">Setting up a relayer node</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../run-blockchain/blockchain-reset.html">Resetting and snapshotting the blockchain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../run-blockchain/enabling-misbehavior-report.html">How to enable the "Report Misbehavior" plugin</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../run-blockchain/monitoring-node.html">How to enable the Monitor plugin</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../run-blockchain/logging.html">Managing logs</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../integrate-blockchain/index.html">Integrate Blockchain</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrate-blockchain/connecting-endpoints.html">Connecting via endpoints</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrate-blockchain/subscribing-to-events.html">Retrieving on-chain events</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Transaction creation, signing, and posting</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../integrate-blockchain/create-sign-transactions.html">How to create and sign a transaction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../integrate-blockchain/create-tx-offline.html">Creating transactions and signing them offline</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../integrate-blockchain/multisignature-accounts-and-transactions.html">How to create multi-signature accounts and transactions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../integrate-blockchain/create-multiSig-tx-offline.html">Creating and signing a multi-signature transaction (Offline)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../integrate-blockchain/calculating-min-fee.html">How to calculate the minimum fee for a transaction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../integrate-blockchain/posting-transactions.html">How to post a transaction</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrate-blockchain/encode-decode.html">Decoding &amp; encoding data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../integrate-blockchain/overwriting-transactions.html">How to overwrite a transaction in the transaction pool</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../integrate-blockchain/integrate-ui/index.html">Integrating a user interface</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../integrate-blockchain/integrate-ui/create-get-account.html">1. Handling accounts</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../integrate-blockchain/integrate-ui/faucet-transfer.html">2. Using faucet and transferring tokens</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../integrate-blockchain/integrate-ui/send-get-hello.html">3. Sending and retrieving hello</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../integrate-blockchain/aggregate-blockchain-data/index.html">Aggregate blockchain data with Klayr Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../integrate-blockchain/aggregate-blockchain-data/extend-indexer.html">Extending the Indexer microservice</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">APIs</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../api/klayr-node-rpc.html">RPC API for Klayr nodes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Module RPC APIs</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../api/module-rpc-api/auth-endpoints.html">Auth module: Endpoint reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../api/module-rpc-api/dynamic-reward-endpoints.html">Dynamic Reward module: Endpoint reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../api/module-rpc-api/fee-endpoints.html">Fee module: Endpoint reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../api/module-rpc-api/interoperability-endpoints.html">Sidechain Interoperability module: Endpoint reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../api/module-rpc-api/mainchain-interoperability-endpoints.html">Mainchain Interoperability module: Endpoint reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../api/module-rpc-api/token-endpoints.html">Token module: Endpoint reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../api/module-rpc-api/validators-endpoints.html">Validators module: Endpoint reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../api/module-rpc-api/random-endpoints.html">Random module: Endpoint reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../api/module-rpc-api/pos-endpoints.html">Proof of Stake module: Endpoint reference</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Plugin RPC APIs</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../api/plugin-rpc-api/chain-connector-api.html">Chain Connector plugin: Endpoint reference</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Klayr Service APIs</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../api/klayr-service-rpc.html">RPC API of Klayr Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../api/klayr-service-http.html">HTTP API (Klayr Service)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../api/klayr-service-pubsub.html">Publish/Subscribe API (Klayr Service)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../api/klayr-service-api-migration.html">Klayr Service API v2 vs v3</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Products</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../klayr-sdk/index.html">Klayr SDK</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../klayr-service/index.html">Klayr Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../klayr-core/index.html">Klayr Core</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../bug-bounty-program.html">Klayr Bug Bounty Program</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Klayr Documentation</span>
+    <span class="version">default</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../klayr-core/index.html">Klayr Core</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../klayr-core/index.html">4.0 (latest)</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../index.html">Klayr Documentation</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">default</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../klayr-sdk/index.html">Klayr SDK</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../klayr-sdk/index.html">6.0 (latest)</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../klayr-service/index.html">Klayr Service</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../klayr-service/index.html">0.7 (latest)</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+      <h1 class="page">Testing the blockchain application</h1>
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>How to use the test utility of the Klayr SDK to test your application.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Sample code</div>
+<div class="paragraph">
+<p>View the complete sample code of this guide on GitHub in the <a href="https://github.com/KlayrHQ/klayr-sdk-examples/tree/development/tutorials/hello/hello_client/test/unit/modules/hello" target="_blank" rel="noopener">Klayr SDK examples repository</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Prerequisites</div>
+<div class="paragraph">
+<p>To use this guide, it is assumed that the following criteria have been met:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Klayr Commander is installed, and a basic blockchain application is already initialized, as explained in the guide <a href="create-blockchain-client.html" class="xref page">Creating a new blockchain client</a>.</p>
+</li>
+<li>
+<p>A new module has been generated as described in the guide <a href="module/index.html" class="xref page">How to create a module</a>.</p>
+</li>
+<li>
+<p>A new command has been generated as described in the guide <a href="module/command.html" class="xref page">How to create a command</a>.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To conveniently test the functionality of modules, plugins, or commands, adjust the already generated test skeletons in the <code>test</code> folder of your application.</p>
+</div>
+<div class="paragraph">
+<p>After generating a new module and command, the corresponding skeletons for their unit tests can be found under <code>test/unit/modules/module_name</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">/hello_client/test/</div>
+<div class="content">
+<pre>├── integration
+├── network
+├── unit
+│   └── modules
+│   │   └── hello
+│   │       ├── commands
+│   │       │   └── create_hello_command.spec.ts
+│   │       └── module.spec.ts
+│   └── plugins
+│       └── hello_info
+│           └── hello_info_plugin.spec.ts
+├── utils
+│   └── config.ts
+├── _setup.js
+├── .eslintrc.js
+└── tsconfig.json</pre>
+</div>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#running-the-test-suite">Running the test suite</a></li>
+<li><a href="#the-module-test-skeleton">The module test skeleton</a></li>
+<li><a href="#the-command-test-skeleton">The command test skeleton</a></li>
+<li><a href="#writing-unit-tests">Writing unit tests</a>
+<ul class="sectlevel2">
+<li><a href="#unit-tests-for-the-createhello-command">Unit tests for the CreateHello command</a></li>
+<li><a href="#run-the-tests">Run the tests</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="running-the-test-suite"><a class="anchor" href="#running-the-test-suite"></a>Running the test suite</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is already possible to run the test at this point, though only the most basic tests will be implemented.</p>
+</div>
+<div class="paragraph">
+<p>To run all test suites, execute the following:</p>
+</div>
+<div class="listingblock">
+<div class="title">/hello_client/</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yarn run test</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The test results can then be viewed in the console:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>yarn run v1.22.19
+warning ../../../../../../package.json: No license field
+$ jest --passWithNoTests
+ts-jest[versions] (WARN) Version 5.0.2 of typescript installed has not been tested with ts-jest. If you're experiencing issues, consider using a supported version (&gt;=4.3.0 &lt;5.0.0-0). Please do not report issues in ts-jest if you are using unsupported versions.
+ts-jest[versions] (WARN) Version 5.0.2 of typescript installed has not been tested with ts-jest. If you're experiencing issues, consider using a supported version (&gt;=4.3.0 &lt;5.0.0-0). Please do not report issues in ts-jest if you are using unsupported versions.
+ts-jest[versions] (WARN) Version 5.0.2 of typescript installed has not been tested with ts-jest. If you're experiencing issues, consider using a supported version (&gt;=4.3.0 &lt;5.0.0-0). Please do not report issues in ts-jest if you are using unsupported versions.
+ PASS  test/unit/modules/hello/module.spec.ts
+ PASS  test/unit/plugins/hello_info/hello_info_plugin.spec.ts
+ PASS  test/unit/modules/hello/commands/create_hello_command.spec.ts
+ › 1 snapshot written.
+
+Snapshot Summary
+ › 1 snapshot written from 1 test suite.
+
+Test Suites: 3 passed, 3 total
+Tests:       16 todo, 2 passed, 18 total
+Snapshots:   1 written, 1 total
+Time:        2.513 s
+Ran all test suites.
+✨  Done in 4.21s.</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="the-module-test-skeleton"><a class="anchor" href="#the-module-test-skeleton"></a>The module test skeleton</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The test skeleton of a module doesn&#8217;t contain any real tests in the beginning.</p>
+</div>
+<div class="paragraph">
+<p>Use the existing structure to implement the tests required for the module, and add more tests as needed.</p>
+</div>
+<div class="listingblock">
+<div class="title">test/unit/modules/hello/module.spec.ts</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">// import * as modules from '../../../src/app/modules/hello'
+
+describe('HelloModule', () =&gt; {
+	describe('constructor', () =&gt; {
+		it.todo('should have valid name');
+	});
+
+	describe('beforeTransactionsExecute', () =&gt; {
+		it.todo('should execute before block execute');
+	});
+	describe('afterTransactionsExecute', () =&gt; {
+		it.todo('should execute after block execute');
+	});
+	describe('beforeCommandExecute', () =&gt; {
+		it.todo('should execute before transaction execute');
+	});
+	describe('afterCommandExecute', () =&gt; {
+		it.todo('should execute after transaction execute');
+	});
+	describe('beforeTransactionsExecute', () =&gt; {
+		it.todo('should execute before genesis execute');
+	});
+	describe('afterTransactionsExecute', () =&gt; {
+		it.todo('should execute after genesis execute');
+	});
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="the-command-test-skeleton"><a class="anchor" href="#the-command-test-skeleton"></a>The command test skeleton</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The test skeleton for the command already contains a few simple tests right from the beginning.
+They are automatically created during the <a href="module/command.html" class="xref page">generation of the command</a>.
+The remainder of the tests will need to be created by the developer, to test all the custom logic of the command which was implemented after the initialization of the application.</p>
+</div>
+<div class="listingblock">
+<div class="title">test/unit/modules/hello/create_hello_command.spec.ts</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">import { HelloModule } from '../../../../../src/app/modules/hello/module';
+import { CreateHelloCommand } from '../../../../../src/app/modules/test/commands/create_hello_command';
+
+describe('CreateHelloCommand', () =&gt; {
+	let command: CreateHelloCommand;
+
+	beforeEach(() =&gt; {
+        const hello = new HelloModule();
+		command = new CreateHelloCommand(hello.stores, hello.events);
+	});
+
+	describe('constructor', () =&gt; {
+		it('should have valid name', () =&gt; {
+			expect(command.name).toEqual('createHello');
+		});
+
+		it('should have valid schema', () =&gt; {
+			expect(command.schema).toMatchSnapshot();
+		});
+	});
+
+	describe('verify', () =&gt; {
+		describe('schema validation', () =&gt; {
+			it.todo('should throw errors for invalid schema');
+			it.todo('should be ok for valid schema');
+		});
+	});
+
+	describe('execute', () =&gt; {
+		describe('valid cases', () =&gt; {
+			it.todo('should update the state store');
+		});
+
+		describe('invalid cases', () =&gt; {
+			it.todo('should throw error');
+		});
+	});
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="writing-unit-tests"><a class="anchor" href="#writing-unit-tests"></a>Writing unit tests</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This example shows how to write unit tests for the command from the previous guide <a href="module/command.html" class="xref page">How to create a command</a>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For more information about the different features of the test suite, check out the reference page <a href="../klayr-sdk/references/test-utils.html" class="xref page">The Klayr SDK testing utilities</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="unit-tests-for-the-createhello-command"><a class="anchor" href="#unit-tests-for-the-createhello-command"></a>Unit tests for the CreateHello command</h3>
+<div class="sect3">
+<h4 id="imports"><a class="anchor" href="#imports"></a>Imports</h4>
+<div class="paragraph">
+<p>Add the following lines at the top of <code>create_hello_command.spec.ts</code> to import the required resources for the tests.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">import { testing, codec, cryptography, Transaction, chain, db, VerifyStatus } from 'klayr-sdk';
+import { CreateHelloCommand } from '../../../../../src/app/modules/hello/commands/create_hello_command';
+import { CreateHelloParams, createHelloSchema } from '../../../../../src/app/modules/hello/schema';
+import { ModuleConfig } from '../../../../../src/app/modules/hello/types';
+import { HelloModule } from '../../../../../src/app/modules/hello/module';
+import { CounterStore, counterKey } from '../../../../../src/app/modules/hello/stores/counter';
+import { MessageStore } from '../../../../../src/app/modules/hello/stores/message';</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <strong><code>testing</code></strong> package imported from Klayr SDK contains several helper functions to create contexts for <strong><code>verify()</code></strong> and <strong><code>execute()</code></strong> hooks.
+You can also create fake block headers, etc. via the <strong><code>testing</code></strong> package and use it to write tests.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="testing-the-verify-function"><a class="anchor" href="#testing-the-verify-function"></a>Testing the verify() function</h4>
+<div class="paragraph">
+<p>As a reminder, the <code>verify()</code> function of the command <code>CreateHelloCommand</code> is shown below:</p>
+</div>
+<div class="listingblock">
+<div class="title">verify() function of create_hello_command.ts</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">public async verify(context: CommandVerifyContext&lt;Params&gt;): Promise&lt;VerificationResult&gt; {
+    const wordList = context.params.message.split(" ");
+    const found = this._blacklist.filter(value =&gt; wordList.includes(value));
+    if (found.length &gt; 0) {
+        context.logger.info("==== FOUND: Message contains a blacklisted word ====");
+        const error = Error(
+            `Illegal word in hello message: ${found.toString()}`
+        );
+        return {
+            status: VerifyStatus.FAIL,
+            error,
+        };
+    }
+    context.logger.info("==== NOT FOUND: Message contains no blacklisted words ====");
+    return {
+        status: VerifyStatus.OK
+    };
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To verify that the function is implemented correctly, write two tests to check if the following occurs:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The <code>VerifyStatus</code> should fail if  the hello message equals some illegal statement as defined in the module&#8217;s config.</p>
+</li>
+<li>
+<p>The <code>VerifyStatus</code> should pass if the hello message doesn&#8217;t contain any illegal statement.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The function <code>createCommandVerifyContext()</code> is used for both tests to create a context for the <code>verify()</code> function.</p>
+</div>
+<div class="paragraph">
+<p>In the first test, where an error is expected, a context with an invalid <code>command</code> parameter with the <code>helloString: 'badWord2'</code> is created, whereas, in the second test, a valid <code>Hello Klayr v6</code> string is passed.</p>
+</div>
+<div class="paragraph">
+<p>After the context is created, both tests will call the <code>verify()</code> function with the context, and the result is checked.</p>
+</div>
+<div class="paragraph">
+<p>If all tests pass, this verifies that the <code>verify()</code> function behaves exactly as expected.</p>
+</div>
+<div class="listingblock">
+<div class="title">Tests for verify() in create_hello_command.spec.ts</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">describe('verify', () =&gt; {
+    it('should have an illegal message', async () =&gt; {
+        const illegalParam = codec.encode(createHelloSchema, { 'message': "badWord2" })
+        const transaction = new Transaction(getSampleTransaction(illegalParam));
+
+        const context = testing
+            .createTransactionContext({
+                stateStore,
+                transaction,
+                header: testing.createFakeBlockHeader({}),
+            })
+            .createCommandVerifyContext&lt;CreateHelloParams&gt;(createHelloSchema);
+
+        const result = await command.verify(context);
+        expect(result.status).toBe(VerifyStatus.FAIL);
+    });
+
+    it('should have a legal message', async () =&gt; {
+        const legalParam = codec.encode(createHelloSchema, { 'message': "Hello Klayr v6 " })
+        const transaction = new Transaction(getSampleTransaction(legalParam));
+
+        const context = testing
+            .createTransactionContext({
+                stateStore,
+                transaction,
+                header: testing.createFakeBlockHeader({}),
+            })
+            .createCommandVerifyContext&lt;CreateHelloParams&gt;(createHelloSchema);
+
+        const result = await command.verify(context);
+        expect(result.status).toBe(VerifyStatus.OK);
+    });
+});</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="testing-the-execute-function"><a class="anchor" href="#testing-the-execute-function"></a>Testing the execute() function</h4>
+<div class="paragraph">
+<p>As a reminder, the <code>execute()</code> function of the command <code>createHelloCommand</code> is shown below:</p>
+</div>
+<div class="listingblock">
+<div class="title">execute() function of create_hello_command.ts</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">public async execute(context: CommandExecuteContext&lt;Params&gt;): Promise&lt;void&gt; {
+    // 1. Get the account data of the sender of the Hello transaction.
+    const { senderAddress } = context.transaction;
+    // 2. Get message and counter stores.
+    const messageSubstore = this.stores.get(MessageStore);
+    const counterSubstore = this.stores.get(CounterStore);
+
+    // 3. Save the Hello message to the message store, using the senderAddress as the key, and the message as value.
+    await messageSubstore.set(context, senderAddress, {
+        message: context.params.message,
+    });
+
+    // 3. Get the Hello counter from the counter store.
+    let helloCounter: CounterStoreData;
+    try {
+        helloCounter = await counterSubstore.get(context, counterKey);
+    } catch (error) {
+        helloCounter = {
+            counter: 0,
+        }
+    }
+    // 5. Increment the Hello counter +1.
+    helloCounter.counter += 1;
+
+    // 6. Save the Hello counter to the counter store.
+    await counterSubstore.set(context, counterKey, helloCounter);
+
+    // 7. Emit a "New Hello" event
+    const newHelloEvent = this.events.get(NewHelloEvent);
+    newHelloEvent.add(context, {
+        senderAddress: context.transaction.senderAddress,
+        message: context.params.message
+    }, [context.transaction.senderAddress]);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To verify that the function is implemented correctly, write 2 tests to check if the following occurs:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The hello message is updated in the sender account with the specified hello string.</p>
+</li>
+<li>
+<p>The hello counter is incremented by one.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Similar to the unit tests for the <code>verify()</code> function, a context is prepared using <code>createCommandExecuteContext()</code> for the <code>execute()</code> function which can be passed to the function when calling it in each test.</p>
+</div>
+<div class="paragraph">
+<p>As the context is the same for every test,  it is recommended to first prepare everything before in the <code>beforeEach()</code> hook and directly call the <code>execute()</code> function with the context in each test.</p>
+</div>
+<div class="listingblock">
+<div class="title">create_hello_command.spec.ts</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">describe('CreateHelloCommand', () =&gt; {
+
+	const getSampleTransaction = (params: Buffer) =&gt; ({
+		module: 'hello',
+		command: CreateHelloCommand.name,
+		senderPublicKey: Buffer.from("3bb9a44b71c83b95045486683fc198fe52dcf27b55291003590fcebff0a45d9a", 'hex'),
+		nonce: BigInt(0),
+		fee: BigInt(100000000),
+		params,
+		signatures: [cryptography.utils.getRandomBytes(64)],
+	});
+
+	let command: CreateHelloCommand;
+	let stateStore: any;
+	let counterStore: CounterStore;
+	let messageStore: MessageStore;
+
+	const config = {
+		"blacklist": [
+			"illegalWord1",
+			"badWord2",
+			"censoredWord3"
+		]
+	}
+
+	beforeEach(async () =&gt; {
+		const hello = new HelloModule();
+		command = new CreateHelloCommand(hello.stores, hello.events);
+		await command.init(config as ModuleConfig);
+		stateStore = new chain.StateStore(new db.InMemoryDatabase());
+		counterStore = hello.stores.get(CounterStore);
+		messageStore = hello.stores.get(MessageStore);
+	});
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>beforeEach()</code> can be used to initialize required values and objects before running the test suite.</p>
+</div>
+<div class="paragraph">
+<p>The tests for the <code>valid cases</code> test are implemented as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="title">create_hello_command.spec.ts</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-typescript hljs" data-lang="typescript">describe('execute', () =&gt; {
+    it('should execute legal message', async () =&gt; {
+        const message = { "message": "Hello from SDK!" };
+        const params = codec.encode(createHelloSchema, message)
+        const transaction = new Transaction(getSampleTransaction(params));
+
+        const context = testing
+            .createTransactionContext({
+                stateStore,
+                transaction,
+                header: testing.createFakeBlockHeader({}),
+            })
+            .createCommandExecuteContext&lt;CreateHelloParams&gt;(createHelloSchema);
+
+        await command.execute(context);
+        const helloMessage = await messageStore.get(context, transaction.senderAddress);
+        const helloCounter = await counterStore.get(context, counterKey);
+        expect(helloCounter.counter).toBe(1);
+        expect(helloMessage.message).toBe("Hello from SDK!");
+    });
+
+    it('should test counter value', async () =&gt; {
+        const message = { "message": "Hello from SDK!" };
+        const params = codec.encode(createHelloSchema, message)
+        const transaction = new Transaction(getSampleTransaction(params));
+
+        const context = testing
+            .createTransactionContext({
+                stateStore,
+                transaction,
+                header: testing.createFakeBlockHeader({}),
+            })
+            .createCommandExecuteContext&lt;CreateHelloParams&gt;(createHelloSchema);
+        await counterStore.set(context, counterKey, { "counter": 10 })
+        await command.execute(context);
+        const helloMessage = await messageStore.get(context, transaction.senderAddress);
+        const helloCounter = await counterStore.get(context, counterKey);
+        expect(helloCounter.counter).toBe(11);
+        expect(helloMessage.message).toBe("Hello from SDK!");
+    });
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="run-the-tests"><a class="anchor" href="#run-the-tests"></a>Run the tests</h3>
+<div class="paragraph">
+<p>After the tests have been implemented, run the test suite again to check if all tests pass successfully:</p>
+</div>
+<div class="listingblock">
+<div class="title">/hello_client/</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yarn run test</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To see the output in the following format, update the <code>verbose</code> property to <code>true</code> in the <strong>jest.config.js</strong> file.
+If the logic and the tests of the command are implemented correctly, all tests should pass:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&gt; hello_client@0.1.0 test
+&gt; jest --passWithNoTests
+
+ts-jest[versions] (WARN) Version 5.0.2 of typescript installed has not been tested with ts-jest. If you're experiencing issues, consider using a supported version (&gt;=4.3.0 &lt;5.0.0-0). Please do not report issues in ts-jest if you are using unsupported versions.
+ts-jest[versions] (WARN) Version 5.0.2 of typescript installed has not been tested with ts-jest. If you're experiencing issues, consider using a supported version (&gt;=4.3.0 &lt;5.0.0-0). Please do not report issues in ts-jest if you are using unsupported versions.
+ts-jest[versions] (WARN) Version 5.0.2 of typescript installed has not been tested with ts-jest. If you're experiencing issues, consider using a supported version (&gt;=4.3.0 &lt;5.0.0-0). Please do not report issues in ts-jest if you are using unsupported versions.
+ PASS  test/unit/modules/hello/module.spec.ts
+  HelloModule
+    constructor
+      ✎ todo should have valid name
+    beforeTransactionsExecute
+      ✎ todo should execute before block execute
+      ✎ todo should execute after genesis execute
+    afterTransactionsExecute
+      ✎ todo should execute after block execute
+      ✎ todo should execute after genesis execute
+    beforeCommandExecute
+      ✎ todo should execute before transaction execute
+    afterCommandExecute
+      ✎ todo should execute after transaction execute
+
+ PASS  test/unit/plugins/hello_info/hello_info_plugin.spec.ts
+  HelloInfoPlugin
+    name
+      ✎ todo should have valid name
+    nodeModulePath
+      ✎ todo should have nodeModulePath
+    events
+      ✎ todo should fire an event
+    load
+      ✎ todo should load plugin
+    unload
+      ✎ todo should unload plugin
+
+ PASS  test/unit/modules/hello/commands/create_hello_command.spec.ts
+  CreateHelloCommand
+    constructor
+      ✓ should have valid name (4 ms)
+      ✓ should have valid schema (1 ms)
+    verify
+      ✓ should have an illegal message (17 ms)
+      ✓ should have a legal message (1 ms)
+    execute
+      ✓ should execute legal message (6 ms)
+      ✓ should test counter value (1 ms)
+
+Test Suites: 3 passed, 3 total
+Tests:       12 todo, 6 passed, 18 total
+Snapshots:   1 passed, 1 total
+Time:        2.335 s
+Ran all test suites.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The implementation of the unit tests for the command <code>CreateHelloCommand</code> is now complete.</p>
+</div>
+<div class="paragraph">
+<p>Similarly to commands, it is also possible to write test cases for modules.
+For example, consider the <a href="https://github.com/KlayrHQ/klayr-sdk/blob/v6.0.1/framework/test/unit/modules/fee/module.spec.ts" target="_blank" rel="noopener">fee module&#8217;s test script</a>, where various unit tests are written for different hooks of a fee module.
+For more unit test examples, see the <a href="https://github.com/KlayrHQ/klayr-sdk/tree/v6.0.1/framework/test/unit" target="_blank" rel="noopener">klayr-sdk/framework/test/unit</a> directory.</p>
+</div>
+</div>
+</div>
+</div>
+  <nav class="pagination">
+  <span class="prev"><a href="interoperable-module/execute-ccm.html">How to execute a CCM</a></span>
+  <span class="next"><a href="../run-blockchain/index.html">Run Blockchain</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footerdiv">
+    <p>© 2024 Klayr</p>
+    <!-- <div class="community-section">
+      <p class="community-section__text">Follow Klayr on: </p>
+      <div class="community-section__icons"> -->
+    <div class="community_icons">
+      <a href="https://klayr.chat" title="Discord" target="_blank" class="footer_icon icon-discord"><p>Discord</p></a>
+      <a href="https://github.com/KlayrHQ" title="GitHub" target="_blank" class="footer_icon icon-github"><p>GitHub</p></a>
+      <!--    </div> -->
+    </div>
+  </div>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<script async src="../_/js/vendor/glossary.js"></script>
+<script async src="../_/js/vendor/tabs-block-behaviour.js"></script>
+<script async src="../_/js/vendor/swagger-ui.js"></script>
+<script async src="../_/js/vendor/component-versions.js"></script>
+<script src="../_/js/vendor/custom.js"></script>
+  <script src="../_/js/vendor/docsearch.js"></script>
+  <!--<script src="../_/js/vendor/docsearch.min.js"></script>-->
+  <!--<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@alpha"></script>-->
+  <script>
+    docsearch({
+      container: '#docsearch',
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs'
+    });
+    docsearch({
+      container: '#docsearch-toolbar',
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs'
+    });
+  </script>
+  <!--<script>
+    function focusSearchInput () { document.querySelector('#search-input').focus() }
+    var search = docsearch({
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs',
+      inputSelector: '#search-input',
+      autocompleteOptions: { hint: false, keyboardShortcuts: ['s'] },
+      algoliaOptions: { hitsPerPage: 10 }
+    }).autocomplete
+    search.on('autocomplete:closed', function () { search.autocomplete.setVal() })
+    focusSearchInput()
+    window.addEventListener('load', focusSearchInput)
+  </script>-->
+  <!--  <script>
+    function focusSearchInputToolbar () { document.querySelector('#search-input-toolbar').focus() }
+    var search = docsearch({
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs',
+      inputSelector: '#search-input-toolbar',
+      autocompleteOptions: { hint: false, keyboardShortcuts: ['s'] },
+      algoliaOptions: { hitsPerPage: 10 }
+    }).autocomplete
+    search.on('autocomplete:closed', function () { search.autocomplete.setVal() })
+    focusSearchInputToolbar()
+    window.addEventListener('load', focusSearchInputToolbar)
+  </script>-->
+
+  </body>
+</html>

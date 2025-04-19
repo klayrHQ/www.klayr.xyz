@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>What is Klayr Elements? :: Klayr documentation</title>
+    <link rel="canonical" href="https://klayr.xyz/documentation/klayr-sdk/references/klayr-elements/index.html">
+    <link rel="prev" href="../migration.html">
+    <link rel="next" href="../klayr-commander/index.html">
+    <meta name="generator" content="Antora 3.1.1">
+
+<link id="theme" rel="stylesheet" title="Default" href="../../../_/css/site.css">
+<link rel="stylesheet" title="Dark" href="../../../_/css/dark-site.css">
+
+<script>var uiRootPath = '../../../_'</script>
+<script src="../../../_/js/vendor/medium-zoom.js"></script>
+<script type="text/javascript" id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="e4db29b5-cd94-4bcf-87e4-04f4ca564240" data-blockingmode="manual"></script>
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://klayr.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/klayr.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+<!-- Matomo Tag Manager -->
+<script>
+  var _mtm = window._mtm = window._mtm || [];
+  _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+  g.async=true; g.src='https://cdn.matomo.cloud/klayr.matomo.cloud/container_RUW6y8yf.js'; s.parentNode.insertBefore(g,s);
+</script>
+<!-- End Matomo Tag Manager -->
+<link rel="icon" href="../../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="top-logo">
+        <a href="../../.." class="klayr-logo"></a>
+        <a href="../../.." class="docs-logo"></a>
+      </div>
+      <!--<a class="navbar-item" href="https://klayr.xyz/documentation">Klayr documentation</a>-->
+        <div id="docsearch" class="navbar-menu search-box hide-for-print">
+          <!--<input id="search-input-toolbar" type="text" placeholder="Search me ...">-->
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">APIs</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../../api/klayr-node-rpc.html">Klayr node RPC API</a>
+            <a class="navbar-item" href="../../../api/klayr-service-http.html">Klayr Service HTTP
+              API</a>
+            <a class="navbar-item" href="../../../api/klayr-service-rpc.html">Klayr Service RPC
+              API</a>
+            <a class="navbar-item" href="../../../api/klayr-service-pubsub.html">Klayr Service
+              Pub/Sub API</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Explorers</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://explorer.klayr.xyz" target="_blank">Klayr Explorer</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../../klayr-sdk/">Klayr SDK</a>
+            <a class="navbar-item" href="../../../klayr-service/">Klayr Service</a>
+            <a class="navbar-item" href="../../../klayr-core/">Klayr Core</a>
+            <a class="navbar-item" href="https://klayr.xyz/wallet" target="_blank">Klayr Wallets</a>
+          </div>
+        </div>
+        <button onclick="switch_style('toggle')" id="theme-toggle" class="theme-toggle navbar-item"></button>
+        <!-- <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div> -->
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+  <div class="components-versions">
+      <div class="page-components">
+    <button class="component-menu-toggle" title="Show other documentations">Klayr SDK</button>
+    <div class="component-menu">
+        <a class="component" href="../../../klayr-core/index.html">Klayr Core</a>
+        <a class="component" href="../../../index.html">Klayr Documentation</a>
+        <a class="component is-current" href="../../index.html">Klayr SDK</a>
+        <a class="component" href="../../../klayr-service/index.html">Klayr Service</a>
+    </div>
+  </div>
+    <span></span>
+      </div>
+  <span></span>
+  <span></span>
+    <a href="../../../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Klayr SDK</a></li>
+    <li>References</li>
+    <li><a href="index.html">Klayr Elements</a></li>
+  </ul>
+</nav>
+    <div id="docsearch-toolbar" class="search-box hide-for-print toolbar-search">
+      <!--<input id="search-input" type="text" placeholder="Search me ...">-->
+    </div>
+  <div class="edit-this-page"><a href="https://github.com/KlayrHQ/klayr-docs/edit/docs-sdk/modules/ROOT/pages/references/klayr-elements/index.adoc">Edit this Page</a></div>
+</div>
+
+<div class="body">
+<div class="nav-container" data-component="klayr-sdk" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../index.html">Klayr SDK</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../index.html">Klayr SDK</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../client-cli.html">Client CLI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../config.html">Client configuration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../modules/index.html">Modules</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.BaseModule.html" target="_blank" rel="noopener">Base module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.Auth.AuthModule.html" target="_blank" rel="noopener">Klayr Auth module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.Fee.FeeModule.html" target="_blank" rel="noopener">Klayr Fee module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.Interoperability.MainchainInteroperabilityModule.html" target="_blank" rel="noopener">Klayr Mainchain Interoperability module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.Interoperability.SidechainInteroperabilityModule.html" target="_blank" rel="noopener">Klayr Sidechain Interoperability module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.NFT.NFTModule.html" target="_blank" rel="noopener">Klayr NFT module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.PoA.PoAModule.html" target="_blank" rel="noopener">Klayr PoA module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.PoS.PoSModule.html" target="_blank" rel="noopener">Klayr PoS module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.Random.RandomModule.html" target="_blank" rel="noopener">Klayr Random module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.Reward.RewardModule.html" target="_blank" rel="noopener">Klayr Reward module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.Token.TokenModule.html" target="_blank" rel="noopener">Klayr Token module</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/classes/klayr_framework.Modules.Validators.ValidatorsModule.html" target="_blank" rel="noopener">Klayr Validators module</a></span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../plugins/index.html">Plugins</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_chain_connector_plugin.html" target="_blank" rel="noopener">Klayr Chain Connector plugin</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_monitor_plugin.html" target="_blank" rel="noopener">Klayr Monitor plugin</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_dashboard_plugin.html" target="_blank" rel="noopener">Klayr Dashboard plugin</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_faucet_plugin.html" target="_blank" rel="noopener">Klayr Faucet plugin</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_generator_plugin.html" target="_blank" rel="noopener">Klayr Generator plugin</a></span>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_report_misbehavior_plugin.html" target="_blank" rel="noopener">Klayr Report Misbehavior plugin</a></span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">References</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration.html">SDK Migration Guide</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Klayr Elements</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_api_client.html" target="_blank" rel="noopener">Klayr API client reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_chain.html" target="_blank" rel="noopener">Klayr Chain reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_codec.html" target="_blank" rel="noopener">Klayr Codec reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_cryptography.html" target="_blank" rel="noopener">Klayr Cryptography reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_p2p.html" target="_blank" rel="noopener">Klayr P2P reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_passphrase.html" target="_blank" rel="noopener">Klayr Passphrase reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_transaction_pool.html" target="_blank" rel="noopener">Klayr Transaction Pool reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_transactions.html" target="_blank" rel="noopener">Klayr Transactions reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_tree.html" target="_blank" rel="noopener">Klayr Tree reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_utils.html" target="_blank" rel="noopener">Klayr Utils reference</a></span>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_validator.html" target="_blank" rel="noopener">Klayr Validator reference</a></span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../klayr-commander/index.html">Klayr Commander</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/klayr-commander.html" target="_blank" rel="noopener">Klayr Commander reference</a></span>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <span class="nav-text"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/klayr_framework.html" target="_blank" rel="noopener">Klayr Framework reference</a></span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Klayr SDK</span>
+    <span class="version">6.0 (latest)</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../klayr-core/index.html">Klayr Core</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../klayr-core/index.html">4.0 (latest)</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../index.html">Klayr Documentation</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../index.html">default</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../../index.html">Klayr SDK</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../../index.html">6.0 (latest)</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../../klayr-service/index.html">Klayr Service</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../klayr-service/index.html">0.7 (latest)</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+      <h1 class="page">What is Klayr Elements?</h1>
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="image"><img src="../../_images/banner_elements.png" alt="Logo"></span></p>
+</div>
+<div class="paragraph">
+<p>Klayr Elements is a collection of JavaScript libraries, each tackling a certain topic of blockchain and Klayr-related functionalities.</p>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#packages">Package list</a>
+<ul class="sectlevel2">
+<li><a href="#used-in-frontend">Used in frontend</a></li>
+<li><a href="#used-in-backend">Used in backend</a></li>
+</ul>
+</li>
+<li><a href="#setup">Setup</a>
+<ul class="sectlevel2">
+<li><a href="#dependencies">Dependencies</a></li>
+<li><a href="#pre-installation">Pre-installation</a></li>
+<li><a href="#installation">Installation</a></li>
+</ul>
+</li>
+<li><a href="#usage">Usage</a>
+<ul class="sectlevel2">
+<li><a href="#node-js">Node.js</a></li>
+<li><a href="#browser">Browser</a></li>
+</ul>
+</li>
+<li><a href="#update">Update</a></li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="packages"><a class="anchor" href="#packages"></a>Package list</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="used-in-frontend"><a class="anchor" href="#used-in-frontend"></a>Used in frontend</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">NPM</th>
+<th class="tableblock halign-left valign-top">Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.npmjs.com/package/@klayr/client" target="_blank" rel="noopener">@klayr/client</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/klayr-client" target="_blank" rel="noopener">@klayr/client</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>klayr-client</code> package is specifically designed to be used in the browser and other frontends.
+It is a collection of the following packages:</p>
+</div>
+<div class="paragraph">
+<p><code>api-client</code>, <code>codec</code>, <code>cryptography</code>, <code>passphrase</code>, <code>transactions</code>, <code>utils</code>, <code>tree</code>, and <code>validator</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="used-in-backend"><a class="anchor" href="#used-in-backend"></a>Used in backend</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">NPM</th>
+<th class="tableblock halign-left valign-top">Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.npmjs.com/package/@klayr/api-client" target="_blank" rel="noopener">@klayr/api-client</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_api_client.html" target="_blank" rel="noopener">api-client</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chain</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.npmjs.com/package/@klayr/chain" target="_blank" rel="noopener">@klayr/chain</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_chain.html" target="_blank" rel="noopener">chain</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Codec</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.npmjs.com/package/@klayr/codec" target="_blank" rel="noopener">@klayr/codec</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_codec.html" target="_blank" rel="noopener">codec</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cryptography</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.npmjs.com/package/@klayr/cryptography" target="_blank" rel="noopener">@klayr/cryptography</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_cryptography.html" target="_blank" rel="noopener">cryptography</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P2P</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.npmjs.com/package/@klayr/p2p" target="_blank" rel="noopener">@klayr/p2p</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_p2p.html" target="_blank" rel="noopener">p2p</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Passphrase</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.npmjs.com/package/@klayr/passphrase" target="_blank" rel="noopener">@klayr/passphrase</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_passphrase.html" target="_blank" rel="noopener">passphrase</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transaction pool</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.npmjs.com/package/@klayr/transaction-pool" target="_blank" rel="noopener">@klayr/transaction-pool</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_transaction_pool.html" target="_blank" rel="noopener">transaction-pool</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transactions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.npmjs.com/package/@klayr/transactions" target="_blank" rel="noopener">@klayr/transactions</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_transactions.html" target="_blank" rel="noopener">transactions</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tree</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.npmjs.com/package/@klayr/tree" target="_blank" rel="noopener">@klayr/tree</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_tree.html" target="_blank" rel="noopener">tree</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Utils</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.npmjs.com/package/@klayr/utils" target="_blank" rel="noopener">@klayr/utils</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_utils.html" target="_blank" rel="noopener">utils</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.npmjs.com/package/@klayr/validator" target="_blank" rel="noopener">@klayr/validator</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://klayr.xyz/documentation/klayr-sdk/references/typedoc/modules/_klayr_validator.html" target="_blank" rel="noopener">validator</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setup"><a class="anchor" href="#setup"></a>Setup</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="dependencies"><a class="anchor" href="#dependencies"></a>Dependencies</h3>
+<div class="paragraph">
+<p>The following dependencies need to be installed to run the Klayr SDK:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Dependencies</th>
+<th class="tableblock halign-left valign-top">Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node.js</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">v18 (latest LTS)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="pre-installation"><a class="anchor" href="#pre-installation"></a>Pre-installation</h3>
+<div class="paragraph">
+<p>Klayr Elements requires <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a> as the underlying engine for code execution.
+The following section describes how to install dependencies such as Node.js and NPM.</p>
+</div>
+<div class="sect3">
+<h4 id="install-node"><a class="anchor" href="#install-node"></a>Install node</h4>
+<div class="paragraph">
+<p>Follow the instructions for your operating system on the <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node.js downloads page</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+NPM is automatically installed along with Node.js.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="verify-installation"><a class="anchor" href="#verify-installation"></a>Verify installation</h4>
+<div class="paragraph">
+<p>Confirm that Node.js and NPM have been successfully installed by running the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">node --version</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm --version</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="installation"><a class="anchor" href="#installation"></a>Installation</h3>
+<div class="paragraph">
+<p>This section details how to install Klayr Elements for a given distribution.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+As all packages in Klayr Elements are independent to each other, they can be installed separately.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="installation-via-npm"><a class="anchor" href="#installation-via-npm"></a>Installation via NPM</h4>
+<div class="paragraph">
+<p>To install the latest version of Klayr Elements for use as a dependency in a Node.js project, please proceed with the following:</p>
+</div>
+<div class="paragraph">
+<p><strong>Complete library</strong></p>
+</div>
+<div class="listingblock">
+<div class="title">Complete Klayr SDK</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install klayr-sdk</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Klayr Elements packages only</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install @klayr/elements</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Frontend related packages only</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install @klayr/client</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Specific package</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install @klayr/&lt;package-name&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>&lt;package-name&gt;</code> can be any of the <a href="#packages">packages</a> in Klayr Elements.</p>
+</div>
+<div class="paragraph">
+<p>Upon successful completion, NPM will add the Klayr Elements package to your <code>package.json</code> file.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="load-via-cdn-content-delivery-network"><a class="anchor" href="#load-via-cdn-content-delivery-network"></a>Load via CDN (Content Delivery Network)</h4>
+<div class="paragraph">
+<p>Include the script below using the following HTML.
+The <code>klayr</code> variable will be exposed.</p>
+</div>
+<div class="listingblock">
+<div class="title">Client library</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;script src="https://js.klayr.xyz/klayr-client-6.0.0.js"&gt;&lt;/script&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Minified client library:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;script src="https://js.klayr.xyz/klayr-client-6.0.0.min.js"&gt;&lt;/script&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To include other packages of Klayr Elements, replace <code>@klayr/client</code> with any of the <a href="#packages">packages</a> of Klayr Elements.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage"><a class="anchor" href="#usage"></a>Usage</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="node-js"><a class="anchor" href="#node-js"></a>Node.js</h3>
+<div class="paragraph">
+<p>Simply import, (or require) the package and access its functionality according to the relevant namespace.</p>
+</div>
+<div class="paragraph">
+<p><strong>Example with the client package:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">import klayr from '@klayr/client';
+//or
+const klayr = require('@klayr/client');</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="browser"><a class="anchor" href="#browser"></a>Browser</h3>
+<div class="paragraph">
+<p>Load the Klayr Elements script via the CDN.
+For example, to load the minified version 6.0.0 of Klayr Elements, include the following script which will then expose the <code>klayr</code> variable:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;script src="https://js.klayr.xyz/klayr-client-6.0.0.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    const api = klayr.apiClient.createWSClient('ws://localhost:7887/rpc-ws');
+&lt;/script&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="update"><a class="anchor" href="#update"></a>Update</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To update your installation to the latest version of Klayr Elements, simply run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="title">Complete library</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm update @klayr/elements</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Specific package</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm update @klayr/&lt;package-name&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+  <nav class="pagination">
+  <span class="prev"><a href="../migration.html">SDK Migration Guide</a></span>
+  <span class="next"><a href="../klayr-commander/index.html">Klayr Commander</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footerdiv">
+    <p>© 2024 Klayr</p>
+    <!-- <div class="community-section">
+      <p class="community-section__text">Follow Klayr on: </p>
+      <div class="community-section__icons"> -->
+    <div class="community_icons">
+      <a href="https://klayr.chat" title="Discord" target="_blank" class="footer_icon icon-discord"><p>Discord</p></a>
+      <a href="https://github.com/KlayrHQ" title="GitHub" target="_blank" class="footer_icon icon-github"><p>GitHub</p></a>
+      <!--    </div> -->
+    </div>
+  </div>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script async src="../../../_/js/vendor/glossary.js"></script>
+<script async src="../../../_/js/vendor/tabs-block-behaviour.js"></script>
+<script async src="../../../_/js/vendor/swagger-ui.js"></script>
+<script async src="../../../_/js/vendor/component-versions.js"></script>
+<script src="../../../_/js/vendor/custom.js"></script>
+  <script src="../../../_/js/vendor/docsearch.js"></script>
+  <!--<script src="../../../_/js/vendor/docsearch.min.js"></script>-->
+  <!--<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@alpha"></script>-->
+  <script>
+    docsearch({
+      container: '#docsearch',
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs'
+    });
+    docsearch({
+      container: '#docsearch-toolbar',
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs'
+    });
+  </script>
+  <!--<script>
+    function focusSearchInput () { document.querySelector('#search-input').focus() }
+    var search = docsearch({
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs',
+      inputSelector: '#search-input',
+      autocompleteOptions: { hint: false, keyboardShortcuts: ['s'] },
+      algoliaOptions: { hitsPerPage: 10 }
+    }).autocomplete
+    search.on('autocomplete:closed', function () { search.autocomplete.setVal() })
+    focusSearchInput()
+    window.addEventListener('load', focusSearchInput)
+  </script>-->
+  <!--  <script>
+    function focusSearchInputToolbar () { document.querySelector('#search-input-toolbar').focus() }
+    var search = docsearch({
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs',
+      inputSelector: '#search-input-toolbar',
+      autocompleteOptions: { hint: false, keyboardShortcuts: ['s'] },
+      algoliaOptions: { hitsPerPage: 10 }
+    }).autocomplete
+    search.on('autocomplete:closed', function () { search.autocomplete.setVal() })
+    focusSearchInputToolbar()
+    window.addEventListener('load', focusSearchInputToolbar)
+  </script>-->
+
+  </body>
+</html>

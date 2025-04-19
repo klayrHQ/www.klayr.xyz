@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Chain Connector plugin: Endpoint reference :: Klayr documentation</title>
+    <link rel="canonical" href="https://klayr.xyz/documentation/api/plugin-rpc-api/chain-connector-api.html">
+    <link rel="prev" href="../module-rpc-api/pos-endpoints.html">
+    <link rel="next" href="../klayr-service-rpc.html">
+    <meta name="generator" content="Antora 3.1.1">
+
+<link id="theme" rel="stylesheet" title="Default" href="../../_/css/site.css">
+<link rel="stylesheet" title="Dark" href="../../_/css/dark-site.css">
+
+<script>var uiRootPath = '../../_'</script>
+<script src="../../_/js/vendor/medium-zoom.js"></script>
+<script type="text/javascript" id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="e4db29b5-cd94-4bcf-87e4-04f4ca564240" data-blockingmode="manual"></script>
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://klayr.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/klayr.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+<!-- Matomo Tag Manager -->
+<script>
+  var _mtm = window._mtm = window._mtm || [];
+  _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+  g.async=true; g.src='https://cdn.matomo.cloud/klayr.matomo.cloud/container_RUW6y8yf.js'; s.parentNode.insertBefore(g,s);
+</script>
+<!-- End Matomo Tag Manager -->
+<link rel="icon" href="../../_/img/favicon.png" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="top-logo">
+        <a href="../.." class="klayr-logo"></a>
+        <a href="../.." class="docs-logo"></a>
+      </div>
+      <!--<a class="navbar-item" href="https://klayr.xyz/documentation">Klayr documentation</a>-->
+        <div id="docsearch" class="navbar-menu search-box hide-for-print">
+          <!--<input id="search-input-toolbar" type="text" placeholder="Search me ...">-->
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">APIs</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../api/klayr-node-rpc.html">Klayr node RPC API</a>
+            <a class="navbar-item" href="../../api/klayr-service-http.html">Klayr Service HTTP
+              API</a>
+            <a class="navbar-item" href="../../api/klayr-service-rpc.html">Klayr Service RPC
+              API</a>
+            <a class="navbar-item" href="../../api/klayr-service-pubsub.html">Klayr Service
+              Pub/Sub API</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Explorers</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://explorer.klayr.xyz" target="_blank">Klayr Explorer</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../klayr-sdk/">Klayr SDK</a>
+            <a class="navbar-item" href="../../klayr-service/">Klayr Service</a>
+            <a class="navbar-item" href="../../klayr-core/">Klayr Core</a>
+            <a class="navbar-item" href="https://klayr.xyz/wallet" target="_blank">Klayr Wallets</a>
+          </div>
+        </div>
+        <button onclick="switch_style('toggle')" id="theme-toggle" class="theme-toggle navbar-item"></button>
+        <!-- <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div> -->
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="toolbar" role="navigation">
+  <button class="nav-toggle"></button>
+  <div class="components-versions">
+      <div class="page-components">
+    <button class="component-menu-toggle" title="Show other documentations">Klayr Documentation</button>
+    <div class="component-menu">
+        <a class="component" href="../../klayr-core/index.html">Klayr Core</a>
+        <a class="component is-current" href="../../index.html">Klayr Documentation</a>
+        <a class="component" href="../../klayr-sdk/index.html">Klayr SDK</a>
+        <a class="component" href="../../klayr-service/index.html">Klayr Service</a>
+    </div>
+  </div>
+    <span></span>
+      </div>
+  <span></span>
+  <span></span>
+    <a href="../../index.html" class="home-link"></a>
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Klayr Documentation</a></li>
+    <li>APIs</li>
+    <li>Plugin RPC APIs</li>
+    <li><a href="chain-connector-api.html">Chain Connector plugin: Endpoint reference</a></li>
+  </ul>
+</nav>
+    <div id="docsearch-toolbar" class="search-box hide-for-print toolbar-search">
+      <!--<input id="search-input" type="text" placeholder="Search me ...">-->
+    </div>
+  <div class="edit-this-page"><a href="https://github.com/KlayrHQ/klayr-docs/edit/development/docs/modules/ROOT/pages/api/plugin-rpc-api/chain-connector-api.adoc">Edit this Page</a></div>
+</div>
+
+<div class="body">
+<div class="nav-container" data-component="ROOT" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../index.html">Klayr Documentation</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Introduction</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../intro/what-is-blockchain.html">What is blockchain?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../intro/how-blockchain-works.html">How blockchain works</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../intro/blockchain-scalability.html">Blockchain Scalability</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../intro/klayr-products.html">Klayr products</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../intro/blockchain-interoperability.html">Blockchain Interoperability</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../understand-blockchain/index.html">Understand Klayr Blockchain</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../understand-blockchain/state-machine.html">State machine</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../understand-blockchain/consensus/index.html">Consensus protocols</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../understand-blockchain/consensus/pos-poa.html">Proof of Stake (PoS) &amp; Proof of Authority (PoA) in Klayr</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../understand-blockchain/network.html">Network</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../understand-blockchain/mainchain.html">Mainchain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../understand-blockchain/interoperability/index.html">Klayr Interoperability</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../understand-blockchain/interoperability/communication.html">Cross-chain communication</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../understand-blockchain/interoperability/sidechain-registration-and-recovery.html">Sidechain Registration &amp; Recovery</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../understand-blockchain/blocks-txs.html">Blocks and Transactions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Klayr SDK</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../understand-blockchain/sdk/modules-commands.html">Modules and Commands</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../understand-blockchain/sdk/plugins.html">Plugins</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../understand-blockchain/sdk/rpc.html">Communicating to a Klayr node via RPC</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../understand-blockchain/sdk/codec-schema.html">Schemas &amp; Codec</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../build-blockchain/index.html">Build Blockchain</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../build-blockchain/create-blockchain-client.html">Creating a new blockchain client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../build-blockchain/configuration.html">Blockchain client configuration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../build-blockchain/module/index.html">How to create a module</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../build-blockchain/module/configuration.html">1. How to create a module configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../build-blockchain/module/stores.html">2. How to create stores</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../build-blockchain/module/command.html">3. How to create a command</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../build-blockchain/module/endpoints-methods.html">4. How to create endpoints and methods</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../build-blockchain/module/blockchain-event.html">5. How to create a blockchain event</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../build-blockchain/plugin/index.html">How to create a plugin</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../build-blockchain/plugin/schema-types.html">1. Defining off-chain data structures</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../build-blockchain/plugin/offchain-db.html">2. Setting up an Off-chain database</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../build-blockchain/plugin/configuring-plugin.html">3. Configuring a Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../build-blockchain/plugin/plugin-class.html">4. Updating the Plugin Class</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../build-blockchain/plugin/plugin-endpoints.html">5. Creating an endpoint &amp; Testing the plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../build-blockchain/using-dashboard.html">Using the Dashboard with a blockchain client</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../build-blockchain/enable-faucet.html">How to enable a Faucet for testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../build-blockchain/create-genesis-block.html">How to create a new genesis block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../build-blockchain/register-sidechain.html">How to register a sidechain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../build-blockchain/interoperable-module/index.html">How to implement cross-chain communication</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../build-blockchain/interoperable-module/create-ccm.html">How to create a CCM</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../build-blockchain/interoperable-module/execute-ccm.html">How to execute a CCM</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../build-blockchain/test-app.html">Testing the blockchain application</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../run-blockchain/index.html">Run Blockchain</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../run-blockchain/process-management.html">Process management with PM2</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../run-blockchain/account-management.html">Managing accounts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../run-blockchain/become-a-validator.html">How to become a validator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../run-blockchain/staking.html">How to stake and un-stake tokens</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../run-blockchain/enable-block-generation.html">How to enable/disable block generation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../run-blockchain/reward-sharing.html">How to share block rewards</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../run-blockchain/setup-relayer.html">Setting up a relayer node</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../run-blockchain/blockchain-reset.html">Resetting and snapshotting the blockchain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../run-blockchain/enabling-misbehavior-report.html">How to enable the "Report Misbehavior" plugin</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../run-blockchain/monitoring-node.html">How to enable the Monitor plugin</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../run-blockchain/logging.html">Managing logs</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../integrate-blockchain/index.html">Integrate Blockchain</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate-blockchain/connecting-endpoints.html">Connecting via endpoints</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate-blockchain/subscribing-to-events.html">Retrieving on-chain events</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Transaction creation, signing, and posting</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../integrate-blockchain/create-sign-transactions.html">How to create and sign a transaction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../integrate-blockchain/create-tx-offline.html">Creating transactions and signing them offline</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../integrate-blockchain/multisignature-accounts-and-transactions.html">How to create multi-signature accounts and transactions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../integrate-blockchain/create-multiSig-tx-offline.html">Creating and signing a multi-signature transaction (Offline)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../integrate-blockchain/calculating-min-fee.html">How to calculate the minimum fee for a transaction</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../integrate-blockchain/posting-transactions.html">How to post a transaction</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate-blockchain/encode-decode.html">Decoding &amp; encoding data</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate-blockchain/overwriting-transactions.html">How to overwrite a transaction in the transaction pool</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../integrate-blockchain/integrate-ui/index.html">Integrating a user interface</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../integrate-blockchain/integrate-ui/create-get-account.html">1. Handling accounts</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../integrate-blockchain/integrate-ui/faucet-transfer.html">2. Using faucet and transferring tokens</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../integrate-blockchain/integrate-ui/send-get-hello.html">3. Sending and retrieving hello</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../integrate-blockchain/aggregate-blockchain-data/index.html">Aggregate blockchain data with Klayr Service</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../integrate-blockchain/aggregate-blockchain-data/extend-indexer.html">Extending the Indexer microservice</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">APIs</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../klayr-node-rpc.html">RPC API for Klayr nodes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Module RPC APIs</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../module-rpc-api/auth-endpoints.html">Auth module: Endpoint reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../module-rpc-api/dynamic-reward-endpoints.html">Dynamic Reward module: Endpoint reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../module-rpc-api/fee-endpoints.html">Fee module: Endpoint reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../module-rpc-api/interoperability-endpoints.html">Sidechain Interoperability module: Endpoint reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../module-rpc-api/mainchain-interoperability-endpoints.html">Mainchain Interoperability module: Endpoint reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../module-rpc-api/token-endpoints.html">Token module: Endpoint reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../module-rpc-api/validators-endpoints.html">Validators module: Endpoint reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../module-rpc-api/random-endpoints.html">Random module: Endpoint reference</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../module-rpc-api/pos-endpoints.html">Proof of Stake module: Endpoint reference</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Plugin RPC APIs</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="chain-connector-api.html">Chain Connector plugin: Endpoint reference</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Klayr Service APIs</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../klayr-service-rpc.html">RPC API of Klayr Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../klayr-service-http.html">HTTP API (Klayr Service)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../klayr-service-pubsub.html">Publish/Subscribe API (Klayr Service)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../klayr-service-api-migration.html">Klayr Service API v2 vs v3</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Products</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../klayr-sdk/index.html">Klayr SDK</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../klayr-service/index.html">Klayr Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../klayr-core/index.html">Klayr Core</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../bug-bounty-program.html">Klayr Bug Bounty Program</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Klayr Documentation</span>
+    <span class="version">default</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../klayr-core/index.html">Klayr Core</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../klayr-core/index.html">4.0 (latest)</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../../index.html">Klayr Documentation</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../../index.html">default</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../klayr-sdk/index.html">Klayr SDK</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../klayr-sdk/index.html">6.0 (latest)</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../klayr-service/index.html">Klayr Service</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../klayr-service/index.html">0.7 (latest)</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+      <h1 class="page">Chain Connector plugin: Endpoint reference</h1>
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This page summarizes all API endpoints specific to the <a href="https://klayr.xyz/documentation/klayr-sdk/v6/references/typedoc/modules/_klayr_framework_chain_connector_plugin.html" target="_blank" rel="noopener">Chain Connector Plugin</a>.</p>
+</div>
+<div class="paragraph">
+<p>All the aforementioned endpoints are invoked using the <code>chainConnector</code> prefix.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Endpoints can be invoked as explained in the <a href="../../integrate-blockchain/connecting-endpoints.html" class="xref page">Connecting via endpoints</a> guide.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="chainconnector_getsentccus"><a class="anchor" href="#chainconnector_getsentccus"></a><code>chainConnector_getSentCCUs</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Whenever a CCU is successfully sent, it&#8217;s saved in the plugin store database.
+This endpoint returns all such sent CCUs.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset1_specification"></a>Specification</p>
+</li>
+<li>
+<p><a id="tabset1_node-cli"></a>Node CLI</p>
+</li>
+<li>
+<p><a id="tabset1_curl"></a>cURL</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset1_specification">
+<div class="paragraph">
+<p>No Parameters.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_node-cli">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">klayr-core endpoint:invoke chainConnector_getSentCCUs --pretty</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset1_curl">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl --location 'http://127.0.0.1:7887/rpc' \
+--header 'Content-Type: application/json' \
+--data '{
+    "jsonrpc": "2.0",
+    "id": "1",
+    "method": "chainConnector_getSentCCUs",
+    "params": {}
+}'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Response</summary>
+<div class="content">
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+    "list": [
+        {
+            "module": "interoperability",
+            "command": "submitMainchainCrossChainUpdate",
+            "params": {
+                "activeValidatorsUpdate": {
+                    "bftWeightsUpdate": [],
+                    "bftWeightsUpdateBitmap": "",
+                    "blsKeysUpdate": []
+                },
+                "certificate": {
+                    "aggregationBits": "1f",
+                    "blockID": "ba44da898916dee0f6a61ab6c19f92d4c6c2c3398dacffc9f3384028b79d5b45",
+                    "height": 12,
+                    "signature": "888e328ac1262b7e2a344738b0e55e6b881fcbacc47e9aa48c320146f1f2b1a6a442231d7de8aa684f36baa4fec7821d1883905721be982e0067934c5a57cdfb3055537b61fac2144763e111c9bab4c218c23c93e6c472ce08c63eaf1220e51a",
+                    "stateRoot": "bf58c16f1c1eb9e845eeb81a0a07aaa32f1631897eda37fef2e075aaf780e7b4",
+                    "timestamp": 1710934315,
+                    "validatorsHash": "003fc70678d219f3d66c3054538801946ef2c0a4067136717a886ae57c7b0b34"
+                },
+                "inboxUpdate": {
+                    "crossChainMessages": [],
+                    "messageWitnessHashes": [],
+                    "outboxRootWitness": {
+                        "bitmap": "",
+                        "siblingHashes": []
+                    }
+                },
+                "certificateThreshold": "4",
+                "sendingChainID": "04000002"
+            },
+            "nonce": "2",
+            "fee": "500000",
+            "senderPublicKey": "46b160b7a24b8813318eb753ef5be4c0a31fe1a3a2789d9253df1617ed4ae829",
+            "signatures": [
+                "b9fa7f8a25540a084efddc3e547299bac38d28f67a18b496ff8bb1c1002b9149e7a0465508b0263af02885d95270cf78375c5c298f75b7f0aebc3dfb8bbe2f0e"
+            ],
+            "id": "7660b9ee495890d89da7ba8db3e1484f74be3e271f58764bfd6ff31132b192d2"
+        },
+        {
+            "module": "interoperability",
+            "command": "submitMainchainCrossChainUpdate",
+            "params": {
+                "activeValidatorsUpdate": {
+                    "bftWeightsUpdate": [],
+                    "bftWeightsUpdateBitmap": "",
+                    "blsKeysUpdate": []
+                },
+                "certificate": {
+                    "aggregationBits": "1f",
+                    "blockID": "d754843e8bbacba213de23b55cdb7acfd1648a00e846e1779df805b932dfeb53",
+                    "height": 11,
+                    "signature": "938331e82fa17963ce8a12d5152f34be6606e16afbc5a941bb2ad2309888382b140ffbe8544fa9348b823b80e4a1180008d58215131e7e677d3de1b59d95b899f9b25b4a41d04e13d4909c31a459e316c4096b849b24d36020270df023e0ffb4",
+                    "stateRoot": "d6da18c593026a877fa1203686ec6c4440786bd45e82d6a81ed597ea09b85d42",
+                    "timestamp": 1710934310,
+                    "validatorsHash": "003fc70678d219f3d66c3054538801946ef2c0a4067136717a886ae57c7b0b34"
+                },
+                "inboxUpdate": {
+                    "crossChainMessages": [],
+                    "messageWitnessHashes": [],
+                    "outboxRootWitness": {
+                        "bitmap": "",
+                        "siblingHashes": []
+                    }
+                },
+                "certificateThreshold": "4",
+                "sendingChainID": "04000002"
+            },
+            "nonce": "1",
+            "fee": "500000",
+            "senderPublicKey": "46b160b7a24b8813318eb753ef5be4c0a31fe1a3a2789d9253df1617ed4ae829",
+            "signatures": [
+                "b8a522cd01830903ebcbf072b90cb2eec96a2bc3183d7f6123a466c7ef2d5fb5da8e91289cc01f89ded553f05070f00432ede9bfa43ce616d84776e89d58ca0f"
+            ],
+            "id": "0315d6b8f30a2cb9afa1f7cb4fb952310fd072394cf41bddf59d12825598fe8b"
+        },
+        {
+            "module": "interoperability",
+            "command": "submitMainchainCrossChainUpdate",
+            "params": {
+                "activeValidatorsUpdate": {
+                    "bftWeightsUpdate": [],
+                    "bftWeightsUpdateBitmap": "",
+                    "blsKeysUpdate": []
+                },
+                "certificate": {
+                    "aggregationBits": "1f",
+                    "blockID": "13f4ab0a0f39aefdaa98bbc403fb267126454a83727b40d5d70ccc83ae01b259",
+                    "height": 10,
+                    "signature": "a0f1db771bfd6ed46e3f25d85425eac0b4cec07762bb2c0b0d8fde423a776e998bbe238c1fceac33f8bd9e7858f8d6ce13cec2d44796583d0314819755d7c28b1d82a861bc9ae8fdd8b1a36daa394a3e4384b11ee93c9f31212696a64a1a3449",
+                    "stateRoot": "e239c1114e42a63ae045faba15f641b2c1bc3f8c06fd8c1cbc3a5739f487ab06",
+                    "timestamp": 1710934305,
+                    "validatorsHash": "003fc70678d219f3d66c3054538801946ef2c0a4067136717a886ae57c7b0b34"
+                },
+                "inboxUpdate": {
+                    "crossChainMessages": [],
+                    "messageWitnessHashes": [],
+                    "outboxRootWitness": {
+                        "bitmap": "",
+                        "siblingHashes": []
+                    }
+                },
+                "certificateThreshold": "4",
+                "sendingChainID": "04000002"
+            },
+            "nonce": "0",
+            "fee": "500000",
+            "senderPublicKey": "46b160b7a24b8813318eb753ef5be4c0a31fe1a3a2789d9253df1617ed4ae829",
+            "signatures": [
+                "13926b70b7d140c534dbdf1de5f8f464c87167f9277841ec66d8a0b6a51d94f975611e04680eed6b50ddcb7e9af2097089bae992c0933ac8dadb03af2946e40f"
+            ],
+            "id": "1f4deeffebc72e633c516f4ebb5c19a5e666b9024c13841c5d7ec3cfa9826a0f"
+        }
+    ],
+    "total": 3
+}</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="chainconnector_getaggregatecommits"><a class="anchor" href="#chainconnector_getaggregatecommits"></a><code>chainConnector_getAggregateCommits</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Returns <a href="https://github.com/KlayrHQ/lips/blob/main/proposals/lip-0061.md#aggregate-commits-1" target="_blank" rel="noopener">aggregate commits</a> from the plugin&#8217;s database.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset2_specification"></a>Specification</p>
+</li>
+<li>
+<p><a id="tabset2_node-cli"></a>Node CLI</p>
+</li>
+<li>
+<p><a id="tabset2_curl"></a>cURL</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset2_specification">
+<table class="tableblock frame-all grid-all stripes-hover stretch">
+<caption class="title">Table 1. Parameters</caption>
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>from</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lower limit of <code>height</code> from where the node should start looking for Cross Chain messages.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">840</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>to</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upper limit of <code>height</code> until where the node should look for Cross Chain messages.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_node-cli">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">klayr-core endpoint:invoke chainConnector_getAggregateCommits --pretty</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset2_curl">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl --location 'http://127.0.0.1:7887/rpc' \
+--header 'Content-Type: application/json' \
+--data '{
+    "jsonrpc": "2.0",
+    "id": "1",
+    "method": "chainConnector_getAggregateCommits",
+    "params": {
+        "from": 840,
+        "to": 1000
+    }
+}'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Response</summary>
+<div class="content">
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+    {
+        "height": 852,
+        "aggregationBits": "01",
+        "certificateSignature": "a84a1de5cad91b9c402999779644af51c768ff3767aefc92a491c77c4df8c403a4290b3148459a22fddb6bf3353af42d11b73ba8af467cf9d4abcb8529df085b91f7fbeb443c30985d8f84989a148116696dd8ee8f69b7ab47a89b6f77e21987"
+    },
+    {
+        "height": 851,
+        "aggregationBits": "01",
+        "certificateSignature": "8468631bed40686bda8157556229ae0f43c26d529f5385fb9e2df8fce14ef0f4c013ba04a6c520cfd7cb425f1840f38b0ca3b86fb64721f7c233730523151c204a03aeb5691dc0e94ea551da10c4fe5df6a2d13572e4840328b796391602e4ec"
+    }
+]</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="chainconnector_getblockheaders"><a class="anchor" href="#chainconnector_getblockheaders"></a><code>chainConnector_getBlockHeaders</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Returns <a href="https://github.com/KlayrHQ/lips/blob/main/proposals/lip-0055.md#block-header" target="_blank" rel="noopener">block headers</a>.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset3_specification"></a>Specification</p>
+</li>
+<li>
+<p><a id="tabset3_node-cli"></a>Node CLI</p>
+</li>
+<li>
+<p><a id="tabset3_curl"></a>cURL</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset3_specification">
+<table class="tableblock frame-all grid-all stripes-hover stretch">
+<caption class="title">Table 2. Parameters</caption>
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>from</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lower limit of <code>height</code> from where the node should start looking for Cross Chain messages.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">840</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>to</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upper limit of <code>height</code> until where the node should look for Cross Chain messages.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tab-pane" aria-labelledby="tabset3_node-cli">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">klayr-core endpoint:invoke chainConnector_getBlockHeaders --pretty</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset3_curl">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl --location 'http://127.0.0.1:7887/rpc' \
+--header 'Content-Type: application/json' \
+--data '{
+    "jsonrpc": "2.0",
+    "id": "1",
+    "method": "chainConnector_getBlockHeaders",
+    "params": {
+        "from": 840,
+        "to": 1000
+    }
+}'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Response</summary>
+<div class="content">
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+    {
+        "version": 2,
+        "timestamp": 1710938780,
+        "height": 905,
+        "previousBlockID": "2ea85245f1fe5079ed9a8718ebcf4b650a68c9b8ffd0c87c1ab83bad2ca1f46c",
+        "stateRoot": "52dff6ee32117f9e091fd09b9d704094addddd7dc40e043de6ac19d930c34a82",
+        "assetRoot": "35c6fa642f6068b4a6fdc15452dcda94362be992d79a81871301dea04ec0cda2",
+        "eventRoot": "11ab2f40b42a4ed38c8a6a20f647d8b02c82131b8ddedb87ad1f1504667adcf9",
+        "transactionRoot": "d79c774a6b487e4313543835f36f371ac1313a6d1cb6ec58d9ed436f21f4e058",
+        "validatorsHash": "f626be7093592d81cde5bbae150a67db52619e0fd193ee61aebe847c45dd557e",
+        "aggregateCommit": {
+            "height": 903,
+            "aggregationBits": "01",
+            "certificateSignature": "90aaac7230c77fe5e27304c9e6a4c20054bbdd035751dd1842cd579acc3fd0a8ed5bbf77cd50d384b516673f654e852b0dc775222083178be34b7c16b7712f1e8e522bd9947a3bc9d514694cf4bc879bb6f9f16af341035f3cdf319f9b9f2b9b"
+        },
+        "generatorAddress": "klyz98oaohxaw6jcfvtgdxm9sprcqzstddoqusrns",
+        "maxHeightPrevoted": 904,
+        "maxHeightGenerated": 904,
+        "impliesMaxPrevotes": true,
+        "signature": "631dedcfcffe04ae4850107f1a1b8af76bed062259723ce82cb5a8921ec0f215b77b8ead7a89f2e5053119c78fa83f1dd825f4cb6c7d3ae98f25ef032da4480c",
+        "id": "8933a8bfea33eccb12c4ba5b79be656eda376d5402f430c89743a3b0e1cedceb"
+    },
+    {
+        "version": 2,
+        "timestamp": 1710938775,
+        "height": 904,
+        "previousBlockID": "93387fae3eb187ef3e0212bd1350e8211973865d50b343891c53f848240ebceb",
+        "stateRoot": "b80f27f36715a2c617bf362bdc3f259a37f3166c023d11275a3636c681a0b4e6",
+        "assetRoot": "d10fdb11000184449e64963d39ceef5d82a70ada1298929419a04424939fa8d0",
+        "eventRoot": "edd6e6231bcc0eafa931d534618a9660330142c90462d097ffcbdd584d656cfc",
+        "transactionRoot": "2d5bf0304150c7e4fe7056b3e1a4e272b5c268d4e8d23440c4dc39b0d8e35010",
+        "validatorsHash": "f626be7093592d81cde5bbae150a67db52619e0fd193ee61aebe847c45dd557e",
+        "aggregateCommit": {
+            "height": 902,
+            "aggregationBits": "01",
+            "certificateSignature": "8062f1ef0807f0bb1afa52b51f9cb105cf38627ba65f62a67895d734cda5f80e65d42d443b4b05f612afacfb2211612411d6770f807803c7addd87a203cc344ba9539aad604719dd192904ba69b367ed24c544c72adc33ebd662f5be21549d0d"
+        },
+        "generatorAddress": "klyz98oaohxaw6jcfvtgdxm9sprcqzstddoqusrns",
+        "maxHeightPrevoted": 903,
+        "maxHeightGenerated": 903,
+        "impliesMaxPrevotes": true,
+        "signature": "07c135ce623ed4a3dfe0aa2e07a45c7231136556d394bbf6255843fa8ed40e79388a5359d7f4d402b71cb60a5503a5be73ec356f29779a3cc1f05b6c8e82b80a",
+        "id": "2ea85245f1fe5079ed9a8718ebcf4b650a68c9b8ffd0c87c1ab83bad2ca1f46c"
+    },
+    {
+        "version": 2,
+        "timestamp": 1710938770,
+        "height": 903,
+        "previousBlockID": "dac53d7ce5299ffe31195af611fc23e24d772f6bfdb4abed525efab397795ed7",
+        "stateRoot": "8a262add795ad2da3d96fee2b761e9e5f5cb9d67d3058fc76c72fc308535ba4d",
+        "assetRoot": "3637ecda054f6fe318560338d42f3051506898346ab09e011a246e49d71fb191",
+        "eventRoot": "30a5b2cb9aa3c0b2d8801cd2efdd594cbc9d8096e10e2c2e5fb42f91613657db",
+        "transactionRoot": "6e56984a65d98f34836373aea6319093f8eb0d5edc0b776b5b0d27df96a68fe1",
+        "validatorsHash": "f626be7093592d81cde5bbae150a67db52619e0fd193ee61aebe847c45dd557e",
+        "aggregateCommit": {
+            "height": 901,
+            "aggregationBits": "01",
+            "certificateSignature": "a55cc53ba8bedc349b318f6af27a9cd6c1205b7179b74092f6bd2986c15dc0dbc09484fd71d0ee030d155e413e329d34118ee6fd584b3fe93d9423caaa6418486efaa9a87cd9996a52f0a3cfbef69b103bdd5a51c7b2c353224c6cff31c49102"
+        },
+        "generatorAddress": "klyz98oaohxaw6jcfvtgdxm9sprcqzstddoqusrns",
+        "maxHeightPrevoted": 902,
+        "maxHeightGenerated": 902,
+        "impliesMaxPrevotes": true,
+        "signature": "8b10787e06adc6c7efda99ba85dc853c6de54632067a6d83982fa2ba9b15b1f948fe8b57ecbca973045bbfb102a0e1bba3a6e37afa77aa0495b6eb68d2421207",
+        "id": "93387fae3eb187ef3e0212bd1350e8211973865d50b343891c53f848240ebceb"
+    },
+    {
+        "version": 2,
+        "timestamp": 1710938765,
+        "height": 902,
+        "previousBlockID": "c124d2f3c26ff8840a722cdd3ef6ef228be3c062c494c4f2f590a059351391fd",
+        "stateRoot": "33d84699ae73047b64ada93527a7095f195436ffa2ae2980ff702bbe2ac0b117",
+        "assetRoot": "aa3c5f41f5f4428a2d32e80a17a896bd6893815ce480ee3ab7e4fd5a5bfb517f",
+        "eventRoot": "90e0af8611aee0491cc4214c93605fc9050f7c54bcd9ffcc935d600dfddeeba0",
+        "transactionRoot": "b82f831f0f97d63819fed7ecb301af4bd645650826989ba2f991016ad1a793e5",
+        "validatorsHash": "f626be7093592d81cde5bbae150a67db52619e0fd193ee61aebe847c45dd557e",
+        "aggregateCommit": {
+            "height": 900,
+            "aggregationBits": "01",
+            "certificateSignature": "a8eaad357942e1c92567a9080e88c778737c9b1596f3cdc2d6fb35c9511f00c054513f89d05f23b5914c1520fa723def03678da0099684f4e23249243b6fd10aba1c16952a9a1c34f147d154a0db37d4a8d327fc2b3457fa8d0e9079ff38fbb9"
+        },
+        "generatorAddress": "klyz98oaohxaw6jcfvtgdxm9sprcqzstddoqusrns",
+        "maxHeightPrevoted": 901,
+        "maxHeightGenerated": 901,
+        "impliesMaxPrevotes": true,
+        "signature": "45b441ff6eae9bfa686a7a16b8406dab415d6998d28ff34864c66de7f1c29fadd4a178375c6ba7d3fb21f96313888a0380436bbc21644955c69e90469e483f02",
+        "id": "dac53d7ce5299ffe31195af611fc23e24d772f6bfdb4abed525efab397795ed7"
+    }
+]</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="chainconnector_getcrosschainmessages"><a class="anchor" href="#chainconnector_getcrosschainmessages"></a><code>chainConnector_getCrossChainMessages</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Returns the cross-chain messages sent across chains.
+This includes CCMs parsed from <a href="https://github.com/KlayrHQ/lips/blob/main/proposals/lip-0045.md#crosschainmessagesentsuccess" target="_blank" rel="noopener">CrossChainMessageSentSuccess</a> and <a href="https://github.com/KlayrHQ/lips/blob/main/proposals/lip-0045.md#crosschainmessageprocessed" target="_blank" rel="noopener">CrossChainMessageProcessed</a> events.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset4_specification"></a>Specification</p>
+</li>
+<li>
+<p><a id="tabset4_node-cli"></a>Node CLI</p>
+</li>
+<li>
+<p><a id="tabset4_curl"></a>cURL</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset4_specification">
+<table class="tableblock frame-all grid-all stripes-hover stretch">
+<caption class="title">Table 3. Parameters</caption>
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>from</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lower limit of <code>height</code> from where the node should start looking for Cross Chain messages.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">840</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>to</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upper limit of <code>height</code> until where the node should look for Cross Chain messages.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tab-pane" aria-labelledby="tabset4_node-cli">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">klayr-core endpoint:invoke chainConnector_getCrossChainMessages '{"from":840, "to":1000}' --pretty</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset4_curl">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl --location 'http://127.0.0.1:7887/rpc' \
+--header 'Content-Type: application/json' \
+--data '{
+    "jsonrpc": "2.0",
+    "id": "1",
+    "method": "chainConnector_getCrossChainMessages",
+    "params": {
+        "from": 840,
+        "to": 1000
+    }
+}'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Response</summary>
+<div class="content">
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+    {
+        "module": "token",
+        "crossChainCommand": "transferCrossChain",
+        "nonce": "129",
+        "fee": "10000000",
+        "sendingChainID": "04000000",
+        "receivingChainID": "04000001",
+        "params": "0a0804000000000000001080c8afa0251a14d6a3789ad0ca09044cac3bead52f652d2d8fb4e62214081ebdc2588b318d146189ac86c05dc7beede2c02a136363207472616e736665722074657374696e67",
+        "status": 0,
+        "height": 949
+    }
+]</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="chainconnector_getlastsentccm"><a class="anchor" href="#chainconnector_getlastsentccm"></a><code>chainConnector_getLastSentCCM</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Returns the last sent cross-chain message, if any, otherwise, it throws an error: "No CCM was sent so far".</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset5_specification"></a>Specification</p>
+</li>
+<li>
+<p><a id="tabset5_node-cli"></a>Node CLI</p>
+</li>
+<li>
+<p><a id="tabset5_curl"></a>cURL</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset5_specification">
+<div class="paragraph">
+<p>No Parameters.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset5_node-cli">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">klayr-core endpoint:invoke chainConnector_getLastSentCCM --pretty</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset5_curl">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl --location 'http://127.0.0.1:7887/rpc' \
+--header 'Content-Type: application/json' \
+--data '{
+    "jsonrpc": "2.0",
+    "id": "1",
+    "method": "chainConnector_getLastSentCCM",
+    "params": {}
+}'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Response</summary>
+<div class="content">
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+    "module": "interoperability",
+    "crossChainCommand": "registration",
+    "nonce": "0",
+    "fee": "0",
+    "sendingChainID": "04000002",
+    "receivingChainID": "04000000",
+    "params": "0a0e6c69736b5f6d61696e636861696e1204040000001a08040000000000000020e807",
+    "status": 0,
+    "height": 13,
+    "outboxSize": 1
+}</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="chainconnector_getallvalidatorsdata"><a class="anchor" href="#chainconnector_getallvalidatorsdata"></a><code>chainConnector_getAllValidatorsData</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Returns validator info from <a href="https://github.com/KlayrHQ/lips/blob/main/proposals/lip-0061.md#approach-1-certificate-computation-from-aggregate-commits" target="_blank" rel="noopener">validatorsHashPreimage</a> key-value store.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset6_specification"></a>Specification</p>
+</li>
+<li>
+<p><a id="tabset6_node-cli"></a>Node CLI</p>
+</li>
+<li>
+<p><a id="tabset6_curl"></a>cURL</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset6_specification">
+<div class="paragraph">
+<p>No Parameters.</p>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset6_node-cli">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">klayr-core endpoint:invoke chainConnector_getAllValidatorsData --pretty</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset6_curl">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl --location 'http://127.0.0.1:7887/rpc' \
+--header 'Content-Type: application/json' \
+--data '{
+    "jsonrpc": "2.0",
+    "id": "1",
+    "method": "chainConnector_getAllValidatorsData",
+    "params": {}
+}'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Response</summary>
+<div class="content">
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">[
+    {
+        "certificateThreshold": "1",
+        "validators": [
+            {
+                "address": "",
+                "bftWeight": "1",
+                "blsKey": "811e8df1a063f94ad7746350f50956f89397a60c070b80d8c12337c0fc4f40e34635ad55c552324911b0b14c9b07c725"
+            }
+        ],
+        "validatorsHash": "f626be7093592d81cde5bbae150a67db52619e0fd193ee61aebe847c45dd557e",
+        "height": 994
+    },
+    {
+        "certificateThreshold": "3",
+        "validators": [
+            {
+                "address": "",
+                "bftWeight": "1",
+                "blsKey": "aeabe96e853e777a6c127c77d83606d1310ef6558ccd461652771c651696bb65248bf790f5a9143ad488affaf5d81345"
+            },
+            {
+                "address": "",
+                "bftWeight": "1",
+                "blsKey": "b0f0ea27a00cd7c193c7958fa72fcf04ce474807138006229f73b1ed3fa5ea1955e8b7e186ad00da8c79e3327c8dab9b"
+            },
+            {
+                "address": "",
+                "bftWeight": "1",
+                "blsKey": "811e8df1a063f94ad7746350f50956f89397a60c070b80d8c12337c0fc4f40e34635ad55c552324911b0b14c9b07c725"
+            }
+        ],
+        "validatorsHash": "be25a0ce5a1f030bec7968cede5e8ea3ec57d3c28220d15860908838e95f9b0d",
+        "height": 63
+    },
+    {
+        "certificateThreshold": "2",
+        "validators": [
+            {
+                "address": "",
+                "bftWeight": "1",
+                "blsKey": "811e8df1a063f94ad7746350f50956f89397a60c070b80d8c12337c0fc4f40e34635ad55c552324911b0b14c9b07c725"
+            },
+            {
+                "address": "",
+                "bftWeight": "1",
+                "blsKey": "b0f0ea27a00cd7c193c7958fa72fcf04ce474807138006229f73b1ed3fa5ea1955e8b7e186ad00da8c79e3327c8dab9b"
+            }
+        ],
+        "validatorsHash": "bc3e1665d3859a13322f0a534dac9ad700f95db6eb6b30ace5b3593a69a4e102",
+        "height": 72
+    },
+    {
+        "certificateThreshold": "3",
+        "validators": [
+            {
+                "address": "",
+                "bftWeight": "1",
+                "blsKey": "aeabe96e853e777a6c127c77d83606d1310ef6558ccd461652771c651696bb65248bf790f5a9143ad488affaf5d81345"
+            },
+            {
+                "address": "",
+                "bftWeight": "1",
+                "blsKey": "811e8df1a063f94ad7746350f50956f89397a60c070b80d8c12337c0fc4f40e34635ad55c552324911b0b14c9b07c725"
+            },
+            {
+                "address": "",
+                "bftWeight": "1",
+                "blsKey": "a1e9b454e298dc1994612e01114ceffb23c39ec6ef5fde19aa6b6f3ca71d02f776a82db86940f868d69f91918cf27dac"
+            },
+            {
+                "address": "",
+                "bftWeight": "1",
+                "blsKey": "b0f0ea27a00cd7c193c7958fa72fcf04ce474807138006229f73b1ed3fa5ea1955e8b7e186ad00da8c79e3327c8dab9b"
+            }
+        ],
+        "validatorsHash": "1f58369c6b9c4995781002a5a1d85ba03e2fe4cf3e80857c62784764ada1c9e8",
+        "height": 54
+    },
+    {
+        "certificateThreshold": "4",
+        "validators": [
+            {
+                "address": "",
+                "bftWeight": "1",
+                "blsKey": "811e8df1a063f94ad7746350f50956f89397a60c070b80d8c12337c0fc4f40e34635ad55c552324911b0b14c9b07c725"
+            },
+            {
+                "address": "",
+                "bftWeight": "1",
+                "blsKey": "a1e9b454e298dc1994612e01114ceffb23c39ec6ef5fde19aa6b6f3ca71d02f776a82db86940f868d69f91918cf27dac"
+            },
+            {
+                "address": "",
+                "bftWeight": "1",
+                "blsKey": "888808e49bbef69b9dd3388611f3add320bf777674cd8478150ca1d5bacfdad5c1315fb982e9b8aa8c3c6ac51c7d8ea2"
+            },
+            {
+                "address": "",
+                "bftWeight": "1",
+                "blsKey": "aeabe96e853e777a6c127c77d83606d1310ef6558ccd461652771c651696bb65248bf790f5a9143ad488affaf5d81345"
+            },
+            {
+                "address": "",
+                "bftWeight": "1",
+                "blsKey": "b0f0ea27a00cd7c193c7958fa72fcf04ce474807138006229f73b1ed3fa5ea1955e8b7e186ad00da8c79e3327c8dab9b"
+            }
+        ],
+        "validatorsHash": "003fc70678d219f3d66c3054538801946ef2c0a4067136717a886ae57c7b0b34",
+        "height": 45
+    }
+]</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="chainconnector_authorize"><a class="anchor" href="#chainconnector_authorize"></a><code>chainConnector_authorize</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Allows authorization of the Chain Connector plugin on a node.</p>
+</div>
+<div class="tabset is-loading">
+<div class="ulist tabs">
+<ul>
+<li>
+<p><a id="tabset7_specification"></a>Specification</p>
+</li>
+<li>
+<p><a id="tabset7_node-cli"></a>Node CLI</p>
+</li>
+<li>
+<p><a id="tabset7_curl"></a>cURL</p>
+</li>
+</ul>
+</div>
+<div class="content">
+<div class="tab-pane" aria-labelledby="tabset7_specification">
+<table class="tableblock frame-all grid-all stripes-hover stretch">
+<caption class="title">Table 4. Parameters</caption>
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password used to create the <code>encryptedPrivateKey</code> mentioned in the Chain Connector plugin&#8217;s configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">klayr</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>enable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A Boolean flag that indicates whether or not to authorize the Chain Connector plugin.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tab-pane" aria-labelledby="tabset7_node-cli">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">klayr-core endpoint:invoke chainConnector_authorize '{"password": "klayr", "enable":true}' --pretty</code></pre>
+</div>
+</div>
+</div>
+<div class="tab-pane" aria-labelledby="tabset7_curl">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl --location 'http://127.0.0.1:7887/rpc' \
+--header 'Content-Type: application/json' \
+--data '{
+    "jsonrpc": "2.0",
+    "id": "1",
+    "method": "chainConnector_authorize",
+    "params": {
+        "password": "klayr",
+        "enable": true
+    }
+}'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Response</summary>
+<div class="content">
+<div class="listingblock">
+<div class="title">Example output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+    "result": "Successfully enabled the chain connector plugin."
+}</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+  <nav class="pagination">
+  <span class="prev"><a href="../module-rpc-api/pos-endpoints.html">Proof of Stake module: Endpoint reference</a></span>
+  <span class="next"><a href="../klayr-service-rpc.html">RPC API of Klayr Service</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footerdiv">
+    <p>© 2024 Klayr</p>
+    <!-- <div class="community-section">
+      <p class="community-section__text">Follow Klayr on: </p>
+      <div class="community-section__icons"> -->
+    <div class="community_icons">
+      <a href="https://klayr.chat" title="Discord" target="_blank" class="footer_icon icon-discord"><p>Discord</p></a>
+      <a href="https://github.com/KlayrHQ" title="GitHub" target="_blank" class="footer_icon icon-github"><p>GitHub</p></a>
+      <!--    </div> -->
+    </div>
+  </div>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script async src="../../_/js/vendor/glossary.js"></script>
+<script async src="../../_/js/vendor/tabs-block-behaviour.js"></script>
+<script async src="../../_/js/vendor/swagger-ui.js"></script>
+<script async src="../../_/js/vendor/component-versions.js"></script>
+<script src="../../_/js/vendor/custom.js"></script>
+  <script src="../../_/js/vendor/docsearch.js"></script>
+  <!--<script src="../../_/js/vendor/docsearch.min.js"></script>-->
+  <!--<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@alpha"></script>-->
+  <script>
+    docsearch({
+      container: '#docsearch',
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs'
+    });
+    docsearch({
+      container: '#docsearch-toolbar',
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs'
+    });
+  </script>
+  <!--<script>
+    function focusSearchInput () { document.querySelector('#search-input').focus() }
+    var search = docsearch({
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs',
+      inputSelector: '#search-input',
+      autocompleteOptions: { hint: false, keyboardShortcuts: ['s'] },
+      algoliaOptions: { hitsPerPage: 10 }
+    }).autocomplete
+    search.on('autocomplete:closed', function () { search.autocomplete.setVal() })
+    focusSearchInput()
+    window.addEventListener('load', focusSearchInput)
+  </script>-->
+  <!--  <script>
+    function focusSearchInputToolbar () { document.querySelector('#search-input-toolbar').focus() }
+    var search = docsearch({
+        appId: 'FFW39DRU80',
+      apiKey: '5be52cb9a3e5e04a8c7ec42b589e5e2e',
+      indexName: 'klayr-docs',
+      inputSelector: '#search-input-toolbar',
+      autocompleteOptions: { hint: false, keyboardShortcuts: ['s'] },
+      algoliaOptions: { hitsPerPage: 10 }
+    }).autocomplete
+    search.on('autocomplete:closed', function () { search.autocomplete.setVal() })
+    focusSearchInputToolbar()
+    window.addEventListener('load', focusSearchInputToolbar)
+  </script>-->
+
+  </body>
+</html>
